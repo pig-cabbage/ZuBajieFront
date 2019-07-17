@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <LinearLayout android:weightSum="1" android:orientation="vertical" android:layout_height="match_parent" android:layout_width="match_parent" android:id="@+id/activity_main2" xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <LinearLayout android:weightSum="1" android:orientation="horizontal" android:layout_height="116dp" android:layout_width="match_parent">
+
+    <ImageView android:layout_height="107dp" android:layout_width="126dp" android:id="@+id/person_image"/>
+
+
+    <LinearLayout android:weightSum="1" android:orientation="vertical" android:layout_height="107dp" android:layout_width="match_parent">
+
+    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/person_ID" android:layout_weight="1.17" android:text="ID"/>
+
+    <TextView android:layout_height="56dp" android:layout_width="match_parent" android:id="@+id/time" android:text="发布时间"/>
+
+</LinearLayout>
+
+</LinearLayout>
+
+    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/price" android:layout_weight="0.05" android:text="价格" android:gravity="center"/>
+
+    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/item_detail_information" android:layout_weight="0.89" android:text="物品详细信息"/>
+
+
+    <LinearLayout android:orientation="horizontal" android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_weight="0.06">
+
+    <ImageView android:layout_height="match_parent" android:layout_width="99dp" android:id="@+id/item_image1" android:layout_weight="465.44"/>
+
+    <ImageView android:layout_height="match_parent" android:layout_width="99dp" android:id="@+id/item_image2" android:layout_weight="179.52"/>
+
+    <ImageView android:layout_height="match_parent" android:layout_width="99dp" android:id="@+id/item_image3" android:layout_weight="223.48"/>
+
+    <Button android:layout_height="77dp" android:layout_width="48dp" android:id="@+id/more_item_image" android:layout_weight="8.11" android:text="更多"/>
+
+</LinearLayout>
+
+
+    <LinearLayout android:weightSum="1" android:orientation="horizontal" android:layout_height="wrap_content" android:layout_width="match_parent">
+
+    <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/collect" android:layout_weight="0.53" android:text="收藏"/>
+
+    <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/want_to_bollow" android:layout_weight="0.42" android:text="想借"/>
+
+</LinearLayout>
+
+</LinearLayout>

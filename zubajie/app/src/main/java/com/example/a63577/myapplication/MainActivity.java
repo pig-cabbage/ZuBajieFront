@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -37,11 +40,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         item_information=(EditText)   findViewById(R.id.item_information);
         search=(Button)findViewById(R.id.search);
         message=(Button)findViewById(R.id.message);
-        bollow=(Button)findViewById(R.id.bollow);
-        loan=(Button)findViewById(R.id.loan);
+
+//        loan=(Button)findViewById(R.id.loan);
+
+        FloatingActionButton fab_borrow = (FloatingActionButton) findViewById(R.id.borrow);
+
+        fab_borrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,release_Activity.class);
+                startActivity(intent);
+            }
+        });
+
         item_display=(RecyclerView) findViewById(R.id.item_display);
         first_page=(Button)findViewById(R.id.first_page);
         add=(Button)findViewById(R.id.add);
@@ -63,16 +78,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        bollow.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
 
-            }
-        });
-        loan.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-
-            }
-        });
+//        loan.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View v){
+//
+//            }
+//        });
         first_page.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
 
@@ -80,8 +91,6 @@ public class MainActivity extends AppCompatActivity {
         });
         add.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent intent=new Intent(MainActivity.this,release_Activity.class);
-                startActivity(intent);
             }
         });
         mine.setOnClickListener(new View.OnClickListener(){

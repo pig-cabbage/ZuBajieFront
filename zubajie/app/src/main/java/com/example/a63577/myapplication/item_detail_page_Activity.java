@@ -1,5 +1,6 @@
 package com.example.a63577.myapplication;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -7,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.View;
 
-public class item_detail_page extends AppCompatActivity {
+public class item_detail_page_Activity extends AppCompatActivity {
     private ImageView person_image;
     private TextView person_ID;
     private TextView time;
@@ -19,6 +20,7 @@ public class item_detail_page extends AppCompatActivity {
     private Button more_item_image;
     private Button collect;
     private Button want_to_bollow;
+    private  Item item;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,22 @@ public class item_detail_page extends AppCompatActivity {
         more_item_image=(Button) findViewById(R.id.more_item_image);
         collect=(Button) findViewById(R.id.collect);
         want_to_bollow=(Button) findViewById(R.id.want_to_bollow);
+
+        Intent intent=getIntent();
+        item =(Item)intent.getSerializableExtra("item") ;
+        price.setText(item.price);
+        item_detail_information.setText(item.text);
+        if(item.Imageid.size()==1)
+            item_image1.setImageResource((int)item.Imageid.get(0));
+        else if(item.Imageid.size()==2)
+        {item_image1.setImageResource((int)item.Imageid.get(0));
+            item_image2.setImageResource((int)item.Imageid.get(1));}
+            else
+        {
+            item_image1.setImageResource((int)item.Imageid.get(0));
+            item_image2.setImageResource((int)item.Imageid.get(1));
+            item_image3.setImageResource((int)item.Imageid.get(2));
+        }
 
         more_item_image.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){

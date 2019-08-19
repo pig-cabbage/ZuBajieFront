@@ -6,75 +6,88 @@
     android:layout_height="match_parent"
     tools:context=".release_Activity">
 
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible">
 
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+         <TableRow
+             android:id="@+id/tableRow1"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:background="#eee"
+             android:layout_marginTop="10dp"
+             >
 
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="标题：" />
+             <TextView
+                 android:id="@+id/textView1"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="                标题：" />
 
             <EditText
                 android:id="@+id/editText1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="#e6e6e6"
                 android:ems="10">
 
-                <requestFocus />
             </EditText>
-
-        </TableRow>
-
+         </TableRow>
         <TableRow
             android:id="@+id/tableRow2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="#eee"
+            android:layout_marginTop="5dp"
+            >
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="补充说明" />
+                android:text="           补充说明" />
 
             <EditText
                 android:id="@+id/editText2"
                 android:layout_width="wrap_content"
                 android:layout_height="123dp"
+                android:background="#e6e6e6"
                 android:ems="10" />
 
         </TableRow>
 
-        <Button
-            android:id="@+id/select_picture"
-            android:layout_width="300dp"
-            android:layout_height="143dp"
-            android:onClick="select_picture"
-            android:text="选取图片"></Button>
+        <TableRow android:layout_marginTop="5dp" >
+
+            <Button
+                android:id="@+id/select_picture"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:background="@drawable/add_pic"
+                android:onClick="select_picture"></Button>
+        </TableRow>
+
 
 
         <TableRow
             android:id="@+id/tableRow3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="#eee"
+            android:layout_marginTop="5dp">
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="价格：" />
+                android:text="              价格：" />
 
             <EditText
                 android:id="@+id/editText3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="#e6e6e6"
                 android:ems="10" />
 
             <TextView
@@ -89,52 +102,69 @@
         <TableRow
             android:id="@+id/tableRow4"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="#eee"
+            android:layout_marginTop="5dp">
 
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="类别：" />
+                android:text="              类别：" />
 
             <Spinner
                 android:id="@+id/spinner1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></Spinner>
+                android:layout_height="wrap_content"
+                ></Spinner>
         </TableRow>
 
 
         <TableRow
             android:id="@+id/tableRow5"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="#eee"
+            android:layout_marginTop="5dp">
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="订单时效：" />
+                android:text="     订单时效：" />
 
             <EditText
                 android:id="@+id/editText4"
-                android:layout_width="121dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="#e6e6e6"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
             <Spinner
                 android:id="@+id/spinner2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></Spinner>
+                android:layout_height="wrap_content"
+                ></Spinner>
 
         </TableRow>
+
+    </TableLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-41dp">
 
         <Button
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="480dp"
+            android:background="@drawable/check_border"
             android:text="提交" />
-
-    </TableLayout>
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

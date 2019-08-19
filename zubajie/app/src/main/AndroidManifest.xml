@@ -16,8 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".item_detail_page" />
-        <activity android:name=".relaease_Activity" />
+        <activity android:name=".item_detail_page_Activity" />
+        <activity android:name=".release_Activity" />
         <activity android:name=".chat_Activity" />
         <activity android:name=".authentication" />
         <activity android:name=".loginActivity" />

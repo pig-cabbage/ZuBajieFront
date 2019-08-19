@@ -43,17 +43,15 @@
             android:layout_width="341dp"
             android:layout_height="46dp"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="244dp"
+            android:layout_marginBottom="240dp"
             android:background="@android:color/background_light"
             android:text="我的收藏"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.703"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
@@ -61,9 +59,7 @@
             android:layout_width="341dp"
             android:layout_height="46dp"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginBottom="296dp"
             android:background="@android:color/background_light"
             android:text="信誉积分"
@@ -71,7 +67,7 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.703"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
@@ -79,17 +75,15 @@
             android:layout_width="341dp"
             android:layout_height="46dp"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="88dp"
+            android:layout_marginBottom="72dp"
             android:background="@android:color/background_light"
             android:text="设置"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.703"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
@@ -97,17 +91,15 @@
             android:layout_width="341dp"
             android:layout_height="46dp"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="192dp"
+            android:layout_marginBottom="184dp"
             android:background="@android:color/background_light"
             android:text="我的订单"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.703"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
@@ -115,60 +107,24 @@
             android:layout_width="341dp"
             android:layout_height="46dp"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="140dp"
+            android:layout_marginBottom="128dp"
             android:background="@android:color/background_light"
             android:text="修改信息"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.703"
             app:layout_constraintStart_toStartOf="parent" />
+//zhelikaishi
+<LinearLayout
+    app:layout_constraintBottom_toBottomOf="parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="123dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="120dp"
-            android:layout_marginRight="120dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/colorPrimary"
-            android:text="+"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <Button
-            android:id="@+id/button7"
-            android:layout_width="123dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="我的"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <Button
-            android:id="@+id/button8"
-            android:layout_width="123dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="240dp"
-            android:layout_marginRight="240dp"
-            android:layout_marginBottom="8dp"
-            android:text="首页"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+        <include layout="@layout/buttom_bar" />
+</LinearLayout>
 
 
 </android.support.constraint.ConstraintLayout>

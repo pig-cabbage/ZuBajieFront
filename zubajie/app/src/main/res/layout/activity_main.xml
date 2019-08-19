@@ -10,32 +10,34 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:weightSum="1">
+
         <EditText
             android:id="@+id/item_information"
-            android:layout_width="240dp"
-            android:layout_height="wrap_content"
-            android:hint="输入物品名称查询"
-            android:layout_weight="0.80" />
+            android:layout_width="216dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.80"
+            android:hint="输入物品名称查询" />
 
         <Button
             android:id="@+id/search"
             android:layout_width="59dp"
             android:layout_height="match_parent"
-            android:text="搜索"
-            />
+            android:background="@drawable/button1"
+            android:text="搜索" />
+
         <Button
             android:id="@+id/message"
             android:layout_width="58dp"
             android:layout_height="match_parent"
-            android:text="消息"
-            />
+            android:background="@drawable/button1"
+            android:text="消息" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="49dp"
         android:gravity="center_horizontal">
 
 
@@ -43,49 +45,41 @@
             android:id="@+id/bollow"
             android:layout_width="59dp"
             android:layout_height="match_parent"
-            android:text="借入"
-            />
+            android:background="@drawable/button1"
+            android:text="借入" />
 
         <Button
             android:id="@+id/loan"
             android:layout_width="58dp"
             android:layout_height="match_parent"
-            android:text="借出"
-            />
+            android:background="@drawable/button1"
+            android:text="借出" />
     </LinearLayout>
 
-    <ListView
+<android.support.percent.PercentFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/item_display"
         android:layout_width="match_parent"
-        android:layout_height="358dp"
-        android:layout_weight="0.28"></ListView>
+        android:layout_height="338dp"
+        android:layout_gravity="top"
+        android:layout_weight="0.28"
+        app:layout_heightPercent="85%"></android.support.v7.widget.RecyclerView>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="1"
-        android:gravity="center_horizontal">
+        android:layout_height="168dp"
+        android:layout_gravity="bottom"
+        app:layout_heightPercent="15%">
 
-
-
-        <Button
-            android:id="@+id/first_page"
-            android:layout_width="59dp"
-            android:layout_height="match_parent"
-            android:text="首页"
-            />
-
-        <Button
-            android:id="@+id/add"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="+" />
-
-        <Button
-            android:id="@+id/mine"
-            android:layout_width="61dp"
-            android:layout_height="match_parent"
-            android:text="我的"
-            />
+        <include layout="@layout/buttom_bar" />
     </LinearLayout>
+</android.support.percent.PercentFrameLayout>
+
+
 </LinearLayout>
+

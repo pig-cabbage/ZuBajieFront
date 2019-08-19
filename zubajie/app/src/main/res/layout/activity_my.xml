@@ -45,7 +45,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="240dp"
-            android:background="@android:color/background_light"
+            android:background="@drawable/r_border"
             android:text="我的收藏"
             android:textColor="@android:color/black"
             android:textSize="18sp"
@@ -61,7 +61,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="296dp"
-            android:background="@android:color/background_light"
+            android:background="@drawable/r_border"
             android:text="信誉积分"
             android:textColor="@android:color/black"
             android:textSize="18sp"
@@ -77,7 +77,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="72dp"
-            android:background="@android:color/background_light"
+            android:background="@drawable/r_border"
             android:text="设置"
             android:textColor="@android:color/black"
             android:textSize="18sp"
@@ -93,7 +93,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="184dp"
-            android:background="@android:color/background_light"
+            android:background="@drawable/r_border"
             android:text="我的订单"
             android:textColor="@android:color/black"
             android:textSize="18sp"
@@ -109,22 +109,23 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="128dp"
-            android:background="@android:color/background_light"
+            android:background="@drawable/r_border"
             android:text="修改信息"
             android:textColor="@android:color/black"
             android:textSize="18sp"
+            android:onClick="person_mes"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.703"
             app:layout_constraintStart_toStartOf="parent" />
 //zhelikaishi
-<LinearLayout
-    app:layout_constraintBottom_toBottomOf="parent"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<!--<LinearLayout-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
 
-        <include layout="@layout/buttom_bar" />
-</LinearLayout>
+        <!--<include layout="@layout/buttom_bar" />-->
+<!--</LinearLayout>-->
 
 
 </android.support.constraint.ConstraintLayout>

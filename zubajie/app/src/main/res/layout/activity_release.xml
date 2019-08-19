@@ -17,7 +17,7 @@
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:background="#eee"
-             android:layout_marginTop="10dp"
+             android:layout_marginTop="15dp"
              >
 
              <TextView
@@ -30,7 +30,7 @@
                 android:id="@+id/editText1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#e6e6e6"
+                android:theme="@style/MyEditText"
                 android:ems="10">
 
             </EditText>
@@ -53,7 +53,7 @@
                 android:id="@+id/editText2"
                 android:layout_width="wrap_content"
                 android:layout_height="123dp"
-                android:background="#e6e6e6"
+                android:theme="@style/MyEditText"
                 android:ems="10" />
 
         </TableRow>
@@ -87,7 +87,7 @@
                 android:id="@+id/editText3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#e6e6e6"
+                android:theme="@style/MyEditText"
                 android:ems="10" />
 
             <TextView
@@ -137,9 +137,8 @@
                 android:id="@+id/editText4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#e6e6e6"
-                android:ems="10"
-                android:inputType="textPersonName" />
+                android:theme="@style/MyEditText"
+                android:ems="10" />
 
             <Spinner
                 android:id="@+id/spinner2"

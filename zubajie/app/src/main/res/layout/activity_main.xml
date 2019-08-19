@@ -22,16 +22,19 @@
 
         <Button
             android:id="@+id/search"
-            android:layout_width="59dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/button1"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/r_border"
             android:text="搜索" />
 
         <Button
             android:id="@+id/message"
-            android:layout_width="58dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/button1"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/r_border"
+
             android:text="消息" />
     </LinearLayout>
 

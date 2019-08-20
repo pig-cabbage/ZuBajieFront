@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
@@ -89,12 +90,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-//        loan.setOnClickListener(new View.OnClickListener(){
-//            public void onClick(View v){
-//
-//            }
-//        });
         first_page.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
 
@@ -111,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    //列表初始化数据
     private void inititem(){
         mlist.clear();
         ArrayList h=new ArrayList();

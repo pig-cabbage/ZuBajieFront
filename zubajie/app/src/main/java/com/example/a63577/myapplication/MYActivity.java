@@ -16,4 +16,14 @@ public class MYActivity extends AppCompatActivity {
         Intent intent=new Intent(MYActivity.this,authentication.class);
         startActivity(intent);
     }
+
+    public void btn_collection(View v) {
+        Intent intent=new Intent(MYActivity.this,collection.class);
+        startActivity(intent);
+    }
+
+    public void btn_order(View v) {
+        Intent intent=new Intent(MYActivity.this,order.class);
+        startActivity(intent);
+    }
 }

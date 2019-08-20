@@ -21,6 +21,8 @@ import android.widget.Toast;
 
 public class release_Activity extends AppCompatActivity {
 
+
+    String borrow_or_loan; //借入或借出
     Button selectPicture;
     Bitmap bitmap;  //图片
 
@@ -75,6 +77,11 @@ public class release_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_release);
+
+        Intent intent = getIntent();
+        // 获取到传递过来的值
+        borrow_or_loan = intent.getStringExtra("borrow_or_loan"); //传递值是借入或借出
+
 
         //获取对应的输入框
         edit_title = (EditText) findViewById(R.id.title);
@@ -150,7 +157,6 @@ public class release_Activity extends AppCompatActivity {
       String supply = edit_supply.getText().toString();
 
       String price = edit_price.getText().toString();
-
 
 
     }

@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText item_information;
     private Button search;
     private Button message;
-    private Button bollow;
-    private Button loan;
     private RecyclerView item_display;
     private Button first_page;
     private Button add;
@@ -45,15 +43,28 @@ public class MainActivity extends AppCompatActivity {
         search=(Button)findViewById(R.id.search);
         message=(Button)findViewById(R.id.message);
 
-//        loan=(Button)findViewById(R.id.loan);
 
-        FloatingActionButton fab_borrow = (FloatingActionButton) findViewById(R.id.borrow);
+        FloatingActionButton fab_borrow = (FloatingActionButton) findViewById(R.id.borrow); //借入
+
+        FloatingActionButton fab_loan = (FloatingActionButton) findViewById(R.id.loan); //借出
 
         fab_borrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(MainActivity.this,release_Activity.class);
+                intent.putExtra("borrow_or_loan", "借入");
                 startActivity(intent);
+
+            }
+        });
+
+        fab_loan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,release_Activity.class);
+                intent.putExtra("borrow_or_loan", "借出");
+                startActivity(intent);
+
             }
         });
 

@@ -95,7 +95,7 @@
                     app:fab_label="借入" />
 
                 <com.github.clans.fab.FloatingActionButton
-                    android:id="@+id/fab_upload"
+                    android:id="@+id/loan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:fab_colorNormal="@color/white"

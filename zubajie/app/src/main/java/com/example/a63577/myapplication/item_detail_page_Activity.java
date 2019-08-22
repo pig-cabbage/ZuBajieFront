@@ -41,7 +41,7 @@ public class item_detail_page_Activity extends AppCompatActivity {
         collect=(Button) findViewById(R.id.collect);
         want_to_bollow=(Button) findViewById(R.id.want_to_bollow);
 
-        Intent intent=getIntent();
+        final Intent intent=getIntent();
         item =(Item)intent.getSerializableExtra("item") ;
         price.setText(item.getPrice());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
@@ -74,5 +74,6 @@ public class item_detail_page_Activity extends AppCompatActivity {
 
             }
         });
+
     }
 }

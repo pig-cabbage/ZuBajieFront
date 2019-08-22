@@ -6,6 +6,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 
+import com.example.a63577.myapplication.Entity.Item;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,10 +35,7 @@ public class collection extends AppCompatActivity {
 
     private void inititem(){
         mlist.clear();
-        ArrayList h=new ArrayList();
-        h.add(R.drawable.image1);
-        Item item1=new Item("电脑","这是一部很强大的电脑。",h,"10块每天","a","a",0);
-        for(int a=0;a<10;a++){mlist.add(item1);}
+
 
     }
 }

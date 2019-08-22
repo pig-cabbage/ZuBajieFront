@@ -8,6 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.View;
 
+import com.example.a63577.myapplication.Entity.Item;
+
+import java.text.SimpleDateFormat;
+
 public class item_detail_page_Activity extends AppCompatActivity {
     private ImageView person_image;
     private TextView person_ID;
@@ -37,20 +41,22 @@ public class item_detail_page_Activity extends AppCompatActivity {
         collect=(Button) findViewById(R.id.collect);
         want_to_bollow=(Button) findViewById(R.id.want_to_bollow);
 
-        Intent intent=getIntent();
+        final Intent intent=getIntent();
         item =(Item)intent.getSerializableExtra("item") ;
-        price.setText(item.price);
-        item_detail_information.setText(item.text);
-        if(item.Imageid.size()==1)
-            item_image1.setImageResource((int)item.Imageid.get(0));
-        else if(item.Imageid.size()==2)
-        {item_image1.setImageResource((int)item.Imageid.get(0));
-            item_image2.setImageResource((int)item.Imageid.get(1));}
+        price.setText(item.getPrice());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+        time.setText(sdf.format(item.getCreateTime()));
+        item_detail_information.setText(item.getDescription());
+        if(item.getImageList().size()==1)
+            item_image1.setImageResource(R.drawable.image1);
+        else if(item.getImageList().size()==2)
+        {item_image1.setImageResource(R.drawable.image1);
+            item_image2.setImageResource(R.drawable.image1);}
             else
         {
-            item_image1.setImageResource((int)item.Imageid.get(0));
-            item_image2.setImageResource((int)item.Imageid.get(1));
-            item_image3.setImageResource((int)item.Imageid.get(2));
+            item_image1.setImageResource(R.drawable.image1);
+            item_image2.setImageResource(R.drawable.image1);
+            item_image3.setImageResource(R.drawable.image1);
         }
 
         more_item_image.setOnClickListener(new View.OnClickListener(){
@@ -68,5 +74,6 @@ public class item_detail_page_Activity extends AppCompatActivity {
 
             }
         });
+
     }
 }

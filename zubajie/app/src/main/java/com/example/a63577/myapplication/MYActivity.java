@@ -19,7 +19,7 @@ finish();
         });
     }
     public void person_mes(View v){
-        Intent intent=new Intent(MYActivity.this,authentication.class);
+        Intent intent=new Intent(MYActivity.this,personal.class);
         startActivity(intent);
     }
 

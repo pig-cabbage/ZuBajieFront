@@ -25,7 +25,6 @@ import android.widget.Toast;
 
 import java.util.List;
 
-
 public class release_Activity extends AppCompatActivity {
 
 
@@ -46,8 +45,6 @@ public class release_Activity extends AppCompatActivity {
     EditText edit_title; //标题
     EditText edit_supply; //补充说明
     EditText edit_price; //价格
-
-    List<String> imageList;//图片路径列表
 
     //选取图片按钮
     public void select_picture(View view) {

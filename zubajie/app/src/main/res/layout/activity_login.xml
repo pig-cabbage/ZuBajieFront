@@ -67,7 +67,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:lineSpacingExtra="8sp"
-            android:text="账号："
+            android:text="手机："
             android:textColor="@android:color/background_dark"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"

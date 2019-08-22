@@ -1,6 +1,8 @@
 package com.example.a63577.myapplication;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -14,9 +16,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.example.a63577.myapplication.Entity.AndroidOrder;
+import com.example.a63577.myapplication.Entity.Item;
+import com.example.a63577.myapplication.constant.AppConfig;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -26,14 +39,24 @@ import java.util.ListIterator;
 public class MainActivity extends AppCompatActivity {
     Item_adapter adapter;
     List<Item> mlist = new ArrayList<>() ;
-
+    private RecyclerView item_display;
     private EditText item_information;
     private Button search;
     private Button message;
-    private RecyclerView item_display;
     private Button first_page;
     private Button add;
     private Button mine;
+
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            mlist= (List<Item>)msg.obj;
+            if(null != mlist){
+                adapter=new Item_adapter(mlist);
+                item_display.setAdapter(adapter);
+            }
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("11111");
@@ -77,9 +100,38 @@ public class MainActivity extends AppCompatActivity {
 
         GridLayoutManager layoutManager =new GridLayoutManager(this,2);
         item_display.setLayoutManager(layoutManager);
-        inititem();
-        adapter=new Item_adapter(mlist);
-        item_display.setAdapter(adapter);
+        System.out.println("1111");
+        OkHttpClient mOkHttpClient = new OkHttpClient();
+        FormEncodingBuilder builder = new FormEncodingBuilder();
+
+
+        final Request request = new Request.Builder()
+                .url(AppConfig.DISPLAY_ITEM)
+                .post(builder.build())
+                .build();
+
+        Call call=mOkHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+
+            @Override
+            public void onFailure(Request request, IOException e) {
+                System.out.println(e.toString());
+            }
+
+            @Override
+            public void onResponse(Response response) throws IOException {
+                System.out.println("进入成功");
+                String responseStr=response.body().string();
+                List<Item> orderEntitiest = new ArrayList<>();
+                orderEntitiest= JSONObject.parseArray(responseStr,Item.class);
+                System.out.println("222222");
+                Message msg = mHandler.obtainMessage();
+                msg.obj = orderEntitiest;
+                mHandler.sendMessage(msg);
+
+            }
+
+        });
 
         search.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -108,14 +160,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //列表初始化数据
-    private void inititem(){
-        mlist.clear();
-        ArrayList h=new ArrayList();
-        h.add(R.drawable.image1);
-        Item item1=new Item("电脑","这是一部很强大的电脑。",h,"10块每天","a","a",0);
-        for(int a=0;a<10;a++){mlist.add(item1);}
 
-    }
 
 }

@@ -25,8 +25,8 @@ import java.util.List;
 public class order extends AppCompatActivity {
 
     private RecyclerView item_display_order;
-    List<AndroidOrder> mlist = new ArrayList<>() ;
-    order_adapter adapter;
+    private List<AndroidOrder> mlist = new ArrayList<>() ;
+    private order_adapter adapter;
     final Data app = (Data)getApplication();
     private Handler mHandler = new Handler(){
         @Override

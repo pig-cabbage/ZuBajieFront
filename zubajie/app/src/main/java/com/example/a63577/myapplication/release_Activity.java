@@ -15,8 +15,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import java.util.List;
 
 
 public class release_Activity extends AppCompatActivity {
@@ -24,6 +28,8 @@ public class release_Activity extends AppCompatActivity {
 
     String borrow_or_loan; //借入或借出
     Button selectPicture;
+    List<Bitmap> bitmaps; //图片的集合
+
     Bitmap bitmap;  //图片
 
 
@@ -56,6 +62,7 @@ public class release_Activity extends AppCompatActivity {
                 try {
                     // 读取uri所在的图片
                     bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+                    bitmaps.add(bitmap);
 
                 }
                 catch (Exception e)
@@ -64,10 +71,19 @@ public class release_Activity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 //bitmap转Drawable
+
+                LinearLayout linearLayout = findViewById(R.id.line);
+                ImageView imageView = new ImageView(this);
+                 //设置图片宽高
                 Drawable d = new BitmapDrawable(bitmap);
-                selectPicture = (Button) findViewById(R.id.select_picture);
+                imageView.setBackground(d);
+
                 //设为按钮的背景
-                selectPicture.setBackground(d);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(400,
+                        400);//两个400分别为添加图片的大小
+                imageView.setLayoutParams(params);
+                linearLayout.addView(imageView);
+
             }
         }
     }

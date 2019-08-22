@@ -10,11 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.a63577.myapplication.Entity.AndroidOrder;
 
 import java.util.List;
 
 public class order_adapter extends RecyclerView.Adapter<order_adapter.ViewHolder> {
-    private List<Item> item_list;
+    private List<AndroidOrder> item_list;
     private Context mcontext;
     static class ViewHolder extends RecyclerView.ViewHolder{
         View itemView;
@@ -31,7 +32,9 @@ public class order_adapter extends RecyclerView.Adapter<order_adapter.ViewHolder
             card_type =(TextView) view.findViewById(R.id.card_type);
         }
     }
-    public order_adapter(List<Item> iitem_list){item_list=iitem_list;}
+    public order_adapter(List<AndroidOrder> iitem_list){
+        System.out.println("33333333");
+        item_list=iitem_list;}
     public  ViewHolder onCreateViewHolder(ViewGroup parent,int viewtype)
     {
         if(mcontext==null)
@@ -41,7 +44,7 @@ public class order_adapter extends RecyclerView.Adapter<order_adapter.ViewHolder
         hholder.itemView.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 int position=hholder.getAdapterPosition();
-                Item item1=item_list.get(position);
+                AndroidOrder item1=item_list.get(position);
                 Intent intent=new Intent(mcontext,item_detail_page_Activity.class);
                 intent.putExtra("item",item1);
                 mcontext.startActivity(intent);
@@ -51,14 +54,14 @@ public class order_adapter extends RecyclerView.Adapter<order_adapter.ViewHolder
     }
     public void onBindViewHolder(ViewHolder holder,int position)
     {
-        Item iitem=item_list.get(position);
-        if(iitem.type==0)
+        AndroidOrder iitem=item_list.get(position);
+        if(iitem.isBorrow()==true)
             holder.card_type.setText("借入");
         else
             holder.card_type.setText("借出");
-        Glide.with(mcontext).load(iitem.Imageid.get(0)).into(holder.card_image);
-        holder.card_name.setText(iitem.title);
-        holder.card_price.setText(iitem.price);
+        Glide.with(mcontext).load(R.drawable.image1).into(holder.card_image);
+        holder.card_name.setText(iitem.getTitle());
+        holder.card_price.setText(iitem.getPrice());
     }
     public int getItemCount(){return item_list.size();}
 }

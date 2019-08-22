@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Item implements Serializable {
-    public String title;
+    private String title;
     public String text;
     public ArrayList Imageid;
     public String price;
@@ -15,4 +15,12 @@ public class Item implements Serializable {
 
     public Item(String a,String b,ArrayList c,String d,String e,String f,int g)
     {title=a;text=b;Imageid=c;price=d;item_type=e;effect_time=f;type=g;}
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

@@ -57,8 +57,8 @@ public class Item_adapter extends RecyclerView.Adapter<Item_adapter.ViewHolder> 
         else
             holder.card_type.setText("借出");
         Glide.with(mcontext).load(iitem.Imageid.get(0)).into(holder.card_image);
-        holder.card_name.setText(iitem.title);
-        holder.card_price.setText(iitem.price);
+        holder.card_name.setText(iitem.getTitle());
+        holder.card_price.setText(iitem.getTitle());
     }
     public int getItemCount(){return item_list.size();}
 }

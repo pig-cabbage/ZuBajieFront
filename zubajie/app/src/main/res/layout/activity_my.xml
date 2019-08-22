@@ -121,13 +121,13 @@
             app:layout_constraintHorizontal_bias="0.703"
             app:layout_constraintStart_toStartOf="parent" />
 //zhelikaishi
-<!--<LinearLayout-->
-    <!--app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content">-->
+<LinearLayout
+    app:layout_constraintBottom_toBottomOf="parent"
+    android:layout_width="match_parent"
+   android:layout_height="wrap_content">
 
-        <!--<include layout="@layout/buttom_bar" />-->
-<!--</LinearLayout>-->
+       <include layout="@layout/buttom_bar" />
+</LinearLayout>
 
 
 </android.support.constraint.ConstraintLayout>

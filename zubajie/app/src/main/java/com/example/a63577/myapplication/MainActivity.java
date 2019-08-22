@@ -1,27 +1,18 @@
 package com.example.a63577.myapplication;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 
 import com.github.clans.fab.FloatingActionButton;
-import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 public class MainActivity extends AppCompatActivity {
     Item_adapter adapter;
@@ -36,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mine;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("11111");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

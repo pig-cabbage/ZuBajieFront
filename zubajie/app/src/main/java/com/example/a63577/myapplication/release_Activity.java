@@ -1,7 +1,9 @@
 package com.example.a63577.myapplication;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -9,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,15 +21,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.List;
+
 
 public class release_Activity extends AppCompatActivity {
-
-
     String borrow_or_loan; //借入或借出
     Button selectPicture;
     Bitmap bitmap;  //图片
-
-
     String item_type; //分类
 
     String item_time; //有效时长
@@ -37,6 +38,8 @@ public class release_Activity extends AppCompatActivity {
     EditText edit_title; //标题
     EditText edit_supply; //补充说明
     EditText edit_price; //价格
+
+    List<String> imageList;//图片路径列表
 
     //选取图片按钮
     public void select_picture(View view) {
@@ -52,6 +55,10 @@ public class release_Activity extends AppCompatActivity {
             if (data != null) {
                 // 得到图片的全路径
                 Uri uri = data.getData();
+                String imagePath = getImagePath(uri,null);
+                Toast toast =Toast.makeText(this,imagePath,Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 500, 500);//设置提示框显示的位置
+                toast.show();//显示消息
                 // uri转bitmap
                 try {
                     // 读取uri所在的图片
@@ -159,6 +166,30 @@ public class release_Activity extends AppCompatActivity {
       String price = edit_price.getText().toString();
 
 
+    }
+
+    private String getImagePath(Uri uri, String selection){
+        String path = null;
+        //通过uri和selection来获取真实的图片路径
+        Cursor cursor = getContentResolver().query(uri, null, selection, null, null);
+        if(cursor != null){
+            if(cursor.moveToFirst()){
+                path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.
+                        Media.DATA));
+            }
+            cursor.close();
+        }
+        Log.i(path, "相册选择");
+        return path;
+    }
+
+    private void displayImage(String imagePath){
+        if(imagePath !=null){
+            Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+            //userImage.setImageBitmap(bitmap);
+        }else{
+            Toast.makeText(this, "failed to get image", Toast.LENGTH_LONG).show();
+        }
     }
 }
 

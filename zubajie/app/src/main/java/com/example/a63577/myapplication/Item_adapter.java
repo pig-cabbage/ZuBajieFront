@@ -31,7 +31,11 @@ public class Item_adapter extends RecyclerView.Adapter<Item_adapter.ViewHolder> 
             card_type =(TextView) view.findViewById(R.id.card_type);
         }
     }
-    public Item_adapter(List<Item> iitem_list){item_list=iitem_list;}
+
+    public Item_adapter(List<Item> iitem_list){
+        item_list=iitem_list;
+    }
+
     public  ViewHolder onCreateViewHolder(ViewGroup parent,int viewtype)
     {
         if(mcontext==null)
@@ -57,8 +61,8 @@ public class Item_adapter extends RecyclerView.Adapter<Item_adapter.ViewHolder> 
         else
             holder.card_type.setText("借出");
         Glide.with(mcontext).load(iitem.Imageid.get(0)).into(holder.card_image);
-        holder.card_name.setText(iitem.title);
-        holder.card_price.setText(iitem.price);
+        holder.card_name.setText(iitem.getTitle());
+        holder.card_price.setText(iitem.getTitle());
     }
     public int getItemCount(){return item_list.size();}
 }

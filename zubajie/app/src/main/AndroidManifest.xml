@@ -10,14 +10,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".fab"></activity>
+        <activity android:name=".person_modify"></activity>
+        <activity android:name=".personal" />
+        <activity android:name=".fab" />
         <activity android:name=".order" />
         <activity android:name=".collection" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".loginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".buttonBarActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -27,8 +39,7 @@
         <activity android:name=".authentication" />
         <activity android:name=".loginActivity" />
         <activity android:name=".MYActivity" />
-        <activity android:name=".constant.Data"/>
-
+        <activity android:name=".constant.Data" />
     </application>
 
 </manifest>

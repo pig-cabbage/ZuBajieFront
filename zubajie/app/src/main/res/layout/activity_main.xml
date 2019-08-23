@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:weightSum="1">
+
+        <EditText
+            android:id="@+id/item_information"
+            android:layout_width="216dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.80"
+            android:hint="输入物品名称查询" />
+
+        <Button
+            android:id="@+id/search"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/r_border"
+            android:text="搜索" />
+
+        <Button
+            android:id="@+id/message"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/r_border"
+
+            android:text="消息" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="31dp"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/jie_ru"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/r_border"
+            android:text="借入" />
+
+        <Button
+            android:id="@+id/jie_chu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/r_border"
+            android:text="借出" />
+
+    </LinearLayout>
+
+    <FrameLayout android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<android.support.percent.PercentFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.SwipeRefreshLayout android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/swipe_refresh" app:layout_heightPercent="87%">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/item_display"
+        android:layout_width="match_parent"
+        android:layout_height="338dp"
+        android:layout_gravity="top"
+        android:layout_weight="0.28"
+        ></android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="168dp"
+        android:layout_gravity="bottom"
+        app:layout_heightPercent="13%">
+        <include layout="@layout/buttom_bar" />
+    </LinearLayout>
+</android.support.percent.PercentFrameLayout>
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_marginTop="300dp"
+            android:layout_marginLeft="90dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            >
+
+
+            <com.github.clans.fab.FloatingActionMenu
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:paddingBottom="45dp"
+                android:paddingLeft="10dp"
+                app:menu_colorNormal="@color/gray"
+                app:menu_labels_ellipsize="end"
+                app:menu_labels_singleLine="true"
+                app:menu_backgroundColor="#00000000">
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/borrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:fab_colorNormal="@color/white"
+                    app:fab_size="mini"
+                    app:fab_label="借入" />
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/loan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:fab_colorNormal="@color/white"
+                    app:fab_size="mini"
+                    app:fab_label="借出" />
+
+
+            </com.github.clans.fab.FloatingActionMenu>
+        </RelativeLayout>
+        <RelativeLayout android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_gravity="right|center_vertical">
+
+
+        <LinearLayout android:orientation="vertical" android:layout_height="wrap_content" android:layout_width="wrap_content">
+
+        <Button android:layout_height="wrap_content" android:layout_width="60dp" android:id="@+id/dian_zi_chan_pin" android:text="电子产品" android:visibility="gone"/>
+
+        <Button android:layout_height="wrap_content" android:layout_width="60dp" android:id="@+id/shu_ji" android:text="书籍" android:visibility="gone"/>
+
+        <Button android:layout_height="wrap_content" android:layout_width="60dp" android:id="@+id/yue_qi" android:text="乐器" android:visibility="gone"/>
+
+        <Button android:layout_height="wrap_content" android:layout_width="60dp" android:id="@+id/pick" android:text="分类" android:background="@drawable/r_border"/>
+
+    </LinearLayout>
+
+    </RelativeLayout>
+    </FrameLayout>
+</LinearLayout>
+

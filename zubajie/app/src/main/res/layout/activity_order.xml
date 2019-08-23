@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".order">
+    <android.support.percent.PercentFrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/item_display"
+            android:layout_width="match_parent"
+            android:layout_height="338dp"
+            android:layout_gravity="top"
+            android:layout_weight="0.28"
+            app:layout_heightPercent="100%"></android.support.v7.widget.RecyclerView>
+
+    </android.support.percent.PercentFrameLayout>
+</android.support.constraint.ConstraintLayout>

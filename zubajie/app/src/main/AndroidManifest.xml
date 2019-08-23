@@ -37,8 +37,12 @@
         <activity android:name=".release_Activity" />
         <activity android:name=".chat_Activity" />
         <activity android:name=".authentication" />
-        <activity android:name=".loginActivity" />
-        <activity android:name=".MYActivity" />
+        <activity android:name=".MYActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".constant.Data" />
     </application>
 

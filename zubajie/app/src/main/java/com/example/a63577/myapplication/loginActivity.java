@@ -77,11 +77,13 @@ public class loginActivity extends AppCompatActivity {
                         String responseStr = response.body().string();
                         JSON json=JSON.parseObject(responseStr);
                         int i=((JSONObject) json).getByte("success");
+                        int userId=((JSONObject) json).getInteger("userId");
                         if(i==0){
                             Toast toast =Toast.makeText(loginActivity.this,"用户名或密码错误",Toast.LENGTH_LONG);
                             toast.show();
                         }else {
                             editor.putBoolean("isLogged",true);
+                            editor.putInt("userId",userId);
                             Toast.makeText(loginActivity.this,"登陆成功",Toast.LENGTH_LONG).show();
                         }
                     }

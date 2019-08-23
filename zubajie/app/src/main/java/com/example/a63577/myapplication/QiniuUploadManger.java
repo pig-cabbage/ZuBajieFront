@@ -25,7 +25,7 @@ public class QiniuUploadManger {
 
     private UploadManager uploadManager;
 
-    public void uploadSingleFile(String filePath){
+    public String uploadSingleFile(String filePath){
         String key=getRandomString(20);
         String token=getToken();
         uploadManager.put(filePath, key, token,
@@ -42,6 +42,7 @@ public class QiniuUploadManger {
                         Log.i("qiniu", key + ",\r\n " + info + ",\r\n " + response);
                     }
                 }, null);
+        return key;
     }
 
     public static String getToken(){

@@ -1,6 +1,8 @@
 package com.example.a63577.myapplication;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +11,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.example.a63577.myapplication.constant.AppConfig;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+
+import java.io.IOException;
 
 public class personal extends AppCompatActivity {
 
@@ -34,6 +47,8 @@ public class personal extends AppCompatActivity {
 
     private Button button_auth;
     private Button button_modify;
+
+    private SharedPreferences preferences;
 
     Bitmap bitmap;  //图片
     Uri head_porstraint; //头像
@@ -63,14 +78,50 @@ public class personal extends AppCompatActivity {
         T_score = findViewById(R.id.score);
         T_school =findViewById(R.id.school);
 
-        T_user_name.setText(user_name);
-        T_user_id.setText(user_id);
-        T_nick_name.setText(nick_name);
-        T_sex.setText(sex);
-        T_student_number.setText(student_number);
-        T_phone_number.setText(phone_number);
-        T_score.setText(score);
-        T_school.setText(school);
+        //获取userId
+        preferences=getPreferences(Activity.MODE_PRIVATE);
+        int userId=preferences.getInt("userId",0);
+
+        OkHttpClient okHttpClient=new OkHttpClient();
+        String url= AppConfig.GET_USER_INFO.concat(user_id);
+        final Request request = new Request.Builder()
+                .url(url)
+                .get()
+                .build();
+        Call call=okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Response response) throws IOException {
+                String responseStr = response.body().string();
+                JSON json=JSON.parseObject(responseStr);
+                JSON userInfo=((JSONObject) json).getJSONObject("userInfo");
+                Integer userId=((JSONObject) userInfo).getInteger("userId");
+                String userName=((JSONObject) userInfo).getString("userName");
+                String nicakName=((JSONObject) userInfo).getString("nicakName");
+                int sexInt=((JSONObject) userInfo).getByte("sex");
+                String sex="男";
+                if(sexInt==0) sex="男";
+                else sex="女";
+                String studentNumber=((JSONObject) userInfo).getString("studentNumber");
+                String phoneNumber=((JSONObject) userInfo).getString("phoneNumber");
+                Integer score=((JSONObject) userInfo).getInteger("score");
+                String school="华南理工大学";
+                T_user_name.setText(userName);
+                T_user_id.setText(userId);
+                T_nick_name.setText(nicakName);
+                T_sex.setText(sex);
+                T_student_number.setText(studentNumber);
+                T_phone_number.setText(phoneNumber);
+                T_score.setText(score);
+                T_school.setText(school);
+            }
+        });
+
 
         button_modify.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){

@@ -19,6 +19,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import com.example.a63577.myapplication.Entity.Item;
@@ -153,6 +155,8 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("进入成功");
                 String responseStr = response.body().string();
                 List<Item> orderEntitiest = new ArrayList<>();
+                JSON json=JSON.parseObject(responseStr);
+
                 orderEntitiest = JSONObject.parseArray(responseStr, Item.class);
                 System.out.println("222222");
                 Message msg = mHandler.obtainMessage();
@@ -331,6 +335,7 @@ public class MainActivity extends AppCompatActivity {
                 String responseStr = response.body().string();
                 List<Item> orderEntitiest = new ArrayList<>();
                 orderEntitiest = JSONObject.parseArray(responseStr, Item.class);
+
                 System.out.println("222222");
                 Message msg = mHandler.obtainMessage();
                 msg.obj = orderEntitiest;

@@ -1,8 +1,11 @@
 package com.example.a63577.myapplication;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+
+import android.support.v7.app.AlertDialog;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -72,9 +75,13 @@ public class release_Activity extends AppCompatActivity {
                 }
                 //bitmap转Drawable
 
-                LinearLayout linearLayout = findViewById(R.id.line);
-                ImageView imageView = new ImageView(this);
-                 //设置图片宽高
+                final LinearLayout linearLayout = findViewById(R.id.line);
+                final ImageView imageView = new ImageView(this);
+
+
+
+
+                //设置图片宽高
                 Drawable d = new BitmapDrawable(bitmap);
                 imageView.setBackground(d);
 
@@ -83,7 +90,32 @@ public class release_Activity extends AppCompatActivity {
                         400);//两个400分别为添加图片的大小
                 imageView.setLayoutParams(params);
                 linearLayout.addView(imageView);
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
 
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(release_Activity.this);
+                        dialog.setTitle("图片操作");
+                        dialog.setMessage("确定删除图片吗？");
+                        dialog.setPositiveButton("是", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                if(bitmaps!=null)
+                                    bitmaps.remove(bitmaps.size()-1);
+                                linearLayout.removeView(imageView);
+
+
+                            }
+                        });
+                        dialog.setNegativeButton("否", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                        dialog.show();
+                    }
+                });
             }
         }
     }
@@ -168,11 +200,11 @@ public class release_Activity extends AppCompatActivity {
     public void submit(View v){
 
 
-      String  title  = edit_title.getText().toString();
+        String  title  = edit_title.getText().toString();
 
-      String supply = edit_supply.getText().toString();
+        String supply = edit_supply.getText().toString();
 
-      String price = edit_price.getText().toString();
+        String price = edit_price.getText().toString();
 
 
     }

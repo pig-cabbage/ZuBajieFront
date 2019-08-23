@@ -79,15 +79,15 @@ public class item_detail_page_Activity extends AppCompatActivity {
         item_detail_information.setText(item.getDescription());
 
         if (item.getImageList().size() == 1)
-            item_image1.setImageResource(R.drawable.image1);
+            item_image1.setImageResource(Integer.parseInt(item.getImageList().get(0)));
         else if (item.getImageList().size() == 2) {
-            item_image1.setImageResource(R.drawable.image1);
-            item_image2.setImageResource(R.drawable.image1);
+            item_image1.setImageResource(Integer.parseInt(item.getImageList().get(0)));
+            item_image2.setImageResource(Integer.parseInt(item.getImageList().get(1)));
         } else {
 
-            item_image1.setImageResource(R.drawable.image1);
-            item_image2.setImageResource(R.drawable.image1);
-            item_image3.setImageResource(R.drawable.image1);
+            item_image1.setImageResource(Integer.parseInt(item.getImageList().get(0)));
+            item_image2.setImageResource(Integer.parseInt(item.getImageList().get(1)));
+            item_image3.setImageResource(Integer.parseInt(item.getImageList().get(2)));
         }
 
 

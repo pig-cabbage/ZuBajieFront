@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
+    app:contentPadding="16dp">
     <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -38,7 +43,17 @@
                 android:layout_marginLeft="150dp"
                 android:layout_marginTop="60dp"
                 android:text="租或借" />
+
+            <TextView
+                android:id="@+id/state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="150dp"
+                android:layout_marginTop="90dp"
+                android:text="订单状态" />
         </RelativeLayout>
+
+
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>

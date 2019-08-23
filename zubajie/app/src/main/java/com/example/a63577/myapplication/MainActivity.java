@@ -1,6 +1,7 @@
 package com.example.a63577.myapplication;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -113,28 +114,46 @@ public class MainActivity extends AppCompatActivity {
         jie_ru.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
 //借入筛选
+                chang_button_fenlei();
+
+                jie_ru.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border_2));
+                jie_ru.setTextColor(getResources().getColor(R.color.blue));
             }
         });
         jie_chu.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
 //借出筛选
+                chang_button_fenlei();
+
+                jie_chu.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border_2));
+                jie_chu.setTextColor(getResources().getColor(R.color.blue));
+
+
             }
         });
 
         shu_ji.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
+                chang_button_fenlei();
 
+                shu_ji.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border_2));
+                shu_ji.setTextColor(getResources().getColor(R.color.blue));
                 //这里进行书籍筛选操作
             }
         });
         dian_zi_chan_pin.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
+                chang_button_fenlei();
 
+                dian_zi_chan_pin.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border_2));
+                dian_zi_chan_pin.setTextColor(getResources().getColor(R.color.blue));
             }
         });
         yue_qi.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-
+                chang_button_fenlei();
+                yue_qi.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border_2));
+                yue_qi.setTextColor(getResources().getColor(R.color.blue));
             }
         });
         first_page.setOnClickListener(new View.OnClickListener(){
@@ -174,6 +193,19 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         }).start();
+    }
+
+    private void chang_button_fenlei(){
+        jie_ru.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border));
+        jie_chu.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border));
+        shu_ji.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border));
+        yue_qi.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border));
+        dian_zi_chan_pin.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border));
+        jie_chu.setTextColor(getResources().getColor(R.color.black));
+        shu_ji.setTextColor(getResources().getColor(R.color.black));
+        dian_zi_chan_pin.setTextColor(getResources().getColor(R.color.black));
+        jie_ru.setTextColor(getResources().getColor(R.color.black));
+        yue_qi.setTextColor(getResources().getColor(R.color.black));
     }
 
 

@@ -1,5 +1,7 @@
 package com.example.a63577.myapplication;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -26,8 +28,18 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.a63577.myapplication.Entity.Item;
+import com.example.a63577.myapplication.constant.AppConfig;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class release_Activity extends AppCompatActivity {
@@ -46,6 +58,8 @@ public class release_Activity extends AppCompatActivity {
     String item_time; //有效时长
 
 
+
+
     EditText edit;
 
     EditText edit_title; //标题
@@ -55,10 +69,77 @@ public class release_Activity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
 
-            AlertDialog alertDialog1 = new AlertDialog.Builder(item_detail_page_Activity.this)
+            AlertDialog alertDialog1 = new AlertDialog.Builder(release_Activity.this)
                     .setTitle("确定提交吗？")//标题
                     .setIcon(R.drawable.success_collect)//图标
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {//添加"Yes"按钮
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    String userId=String.valueOf(getPreferences(Activity.MODE_PRIVATE).getInt("userId",0));
+                    String  title  = edit_title.getText().toString();
+
+                    String supply = edit_supply.getText().toString();
+
+                    String price = edit_price.getText().toString();
+                    String key="";
+                    QiniuUploadManger uploadImage=new QiniuUploadManger();
+                    for(int k=0;k<pathOfImages.size();++k){
+                        key.concat(uploadImage.uploadSingleFile(pathOfImages.get(i))+" ");
+                    }
+                    String url;
+                    if(borrow_or_loan.equals("借入"))
+                        url=AppConfig.BASE_URL_PATH.concat("/addborrowitem");
+                    else
+                        url=AppConfig.BASE_URL_PATH.concat("/addlenditem");
+                    OkHttpClient mOkHttpClient = new OkHttpClient();
+                    FormEncodingBuilder builder = new FormEncodingBuilder();
+                        builder.add("title",title);
+                        builder.add("description",supply);
+                        builder.add("price",price);
+                        builder.add("tag",item_type);
+                        builder.add("validity",item_time);
+                        builder.add("keyList",key);
+                        builder.add("userId",userId);
+
+
+                    final Request request = new Request.Builder()
+                            .url(url)
+                            .post(builder.build())
+                            .build();
+
+                    Call call = mOkHttpClient.newCall(request);
+                    call.enqueue(new com.squareup.okhttp.Callback() {
+
+                        @Override
+                        public void onFailure(Request request, IOException e) {
+                            System.out.println(e.toString());
+                        }
+
+                        @Override
+                        public void onResponse(Response response) throws IOException {
+                            System.out.println("添加成功");
+                            String responseStr = response.body().string();
+                            List<Item> orderEntitiest = new ArrayList<>();
+                            orderEntitiest = JSONObject.parseArray(responseStr, Item.class);
+                            System.out.println("222222");
+                            Message msg = mHandler.obtainMessage();
+                            msg.obj = orderEntitiest;
+                            mHandler.sendMessage(msg);
+
+                        }
+
+                    });
+                }
+            })
+                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {//添加取消
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Toast.makeText(release_Activity.this, "这是取消按钮", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+
                     .create();
+
 
             alertDialog1.show();
         }
@@ -196,11 +277,7 @@ public class release_Activity extends AppCompatActivity {
 
         mHandler.sendMessage(msg);
 
-      String  title  = edit_title.getText().toString();
 
-      String supply = edit_supply.getText().toString();
-
-      String price = edit_price.getText().toString();
 
 
     }

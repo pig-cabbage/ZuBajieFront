@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private  Button yue_qi;
     private  Button shu_ji;
     private Button first_page;
-    private Button add;
     private Button mine;
     private SwipeRefreshLayout swipe_refresh;
     @Override
@@ -80,12 +79,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         item_display=(RecyclerView) findViewById(R.id.item_display);
-        pick=(Button)findViewById(R.id.pick);
         dian_zi_chan_pin=(Button)findViewById(R.id.dian_zi_chan_pin);
         shu_ji=(Button)findViewById(R.id.shu_ji);
         yue_qi=(Button)findViewById(R.id.yue_qi);
         first_page=(Button)findViewById(R.id.first_page);
-        add=(Button)findViewById(R.id.add);
         mine=(Button)findViewById(R.id.mine);
         swipe_refresh=(SwipeRefreshLayout)findViewById(R.id.swipe_refresh) ;
 
@@ -123,36 +120,26 @@ public class MainActivity extends AppCompatActivity {
 //借出筛选
             }
         });
-        pick.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                if(dian_zi_chan_pin.getVisibility()==View.GONE) { button_visible(); }
-                else button_invisible();
-            }
-        });
 
         shu_ji.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                button_invisible();
+
                 //这里进行书籍筛选操作
             }
         });
         dian_zi_chan_pin.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                button_invisible();
+
             }
         });
         yue_qi.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                button_invisible();
+
             }
         });
         first_page.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
 
-            }
-        });
-        add.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
             }
         });
         mine.setOnClickListener(new View.OnClickListener(){
@@ -189,17 +176,6 @@ public class MainActivity extends AppCompatActivity {
         }).start();
     }
 
-    private void button_invisible()
-    {
-        dian_zi_chan_pin.setVisibility(View.GONE);
-        shu_ji.setVisibility(View.GONE);
-        yue_qi.setVisibility(View.GONE);
-    }
-    private void button_visible()
-    {
-        dian_zi_chan_pin.setVisibility(View.VISIBLE);
-        shu_ji.setVisibility(View.VISIBLE);
-        yue_qi.setVisibility(View.VISIBLE);
-    }
+
 
 }

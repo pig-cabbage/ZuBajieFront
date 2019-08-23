@@ -81,9 +81,9 @@ public class personal extends AppCompatActivity {
         //获取userId
         preferences=getPreferences(Activity.MODE_PRIVATE);
         int userId=preferences.getInt("userId",0);
-
+        String userIdStr=String.valueOf(userId);
         OkHttpClient okHttpClient=new OkHttpClient();
-        String url= AppConfig.GET_USER_INFO.concat(user_id);
+        String url= AppConfig.GET_USER_INFO.concat("?userId=").concat(userIdStr);
         final Request request = new Request.Builder()
                 .url(url)
                 .get()

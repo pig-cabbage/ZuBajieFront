@@ -11,7 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".person_modify"></activity>
-        <activity android:name=".personal" />
+        <activity android:name=".personal" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".fab" />
         <activity android:name=".order" />
         <activity android:name=".collection" />

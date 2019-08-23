@@ -11,15 +11,19 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.ArrayList;
+import com.example.a63577.myapplication.Entity.Item;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -30,12 +34,10 @@ public class MainActivity extends AppCompatActivity {
     List<Item> mlist = new ArrayList<>() ;
 
     private EditText item_information;
-    private Button search;
     private Button message;
     private RecyclerView item_display;
     private  Button jie_ru;
     private  Button jie_chu;
-    private  Button pick;
     private  Button dian_zi_chan_pin;
     private  Button yue_qi;
     private  Button shu_ji;
@@ -50,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         item_information=(EditText)   findViewById(R.id.item_information);
-        search=(Button)findViewById(R.id.search);
         message=(Button)findViewById(R.id.message);
         jie_chu=(Button)findViewById(R.id.jie_chu);
         jie_ru=(Button)findViewById(R.id.jie_ru);
@@ -101,10 +102,16 @@ public class MainActivity extends AppCompatActivity {
         adapter=new Item_adapter(mlist);
         item_display.setAdapter(adapter);
 
-        search.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                String information =item_information.getText().toString();
-            }
+        item_information.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if(actionId == EditorInfo.IME_ACTION_SEARCH){
+                    //点击键盘的搜索按钮后
+                    String information =item_information.getText().toString();
+                    Intent intent=new Intent(MainActivity.this,search.class);
+                    startActivity(intent);
+                    }
+                return false;    }
         });
         message.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -172,10 +179,10 @@ public class MainActivity extends AppCompatActivity {
     //列表初始化数据
     private void inititem(){
         mlist.clear();
-        ArrayList h=new ArrayList();
-        h.add(R.drawable.image1);
-        Item item1=new Item("电脑","这是一部很强大的电脑。",h,"10块每天","a","a",0);
-        for(int a=0;a<10;a++){mlist.add(item1);}
+//        ArrayList h=new ArrayList();
+//        h.add(R.drawable.image1);
+//        Item item1=new Item("电脑","这是一部很强大的电脑。",h,"10块每天","a","a",0);
+//        for(int a=0;a<10;a++){mlist.add(item1);}
     }
     private  void refresh()
     {

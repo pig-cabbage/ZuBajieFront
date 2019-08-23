@@ -15,6 +15,9 @@
         android:weightSum="1">
 
         <EditText
+            android:inputType="text"
+            android:singleLine="true"
+            android:imeOptions="actionSearch"
             android:id="@+id/item_information"
             android:layout_width="216dp"
             android:layout_height="45dp"
@@ -22,13 +25,7 @@
             android:background="@drawable/edit_sharp"
             android:hint="输入物品名称查询" />
 
-        <Button
-            android:id="@+id/search"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/r_border"
-            android:text="搜索" />
+
 
         <Button
             android:id="@+id/message"

@@ -46,7 +46,7 @@ public class order extends AppCompatActivity {
 
         System.out.println("111111111");
 
-        item_display_order=(RecyclerView) findViewById(R.id.item_display);
+        item_display_order=(RecyclerView) findViewById(R.id.item_display_order);
 
 
         GridLayoutManager layoutManager =new GridLayoutManager(this,1);

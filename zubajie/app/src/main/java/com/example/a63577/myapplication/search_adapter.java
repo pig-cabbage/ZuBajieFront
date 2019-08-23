@@ -1,5 +1,7 @@
 package com.example.a63577.myapplication;
 
+
+
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -14,7 +16,7 @@ import com.example.a63577.myapplication.Entity.Item;
 
 import java.util.List;
 
-public class Item_adapter extends RecyclerView.Adapter<Item_adapter.ViewHolder> {
+public class search_adapter extends RecyclerView.Adapter<search_adapter.ViewHolder> {
     private List<Item> item_list;
     private Context mcontext;
     static class ViewHolder extends RecyclerView.ViewHolder{
@@ -25,23 +27,19 @@ public class Item_adapter extends RecyclerView.Adapter<Item_adapter.ViewHolder> 
         TextView card_type;
         public ViewHolder(View view)
         {super(view);
-        itemView=view;
-        card_image=(ImageView)view.findViewById(R.id.card_image);
-        card_name =(TextView) view.findViewById(R.id.card_name);
+            itemView=view;
+            card_image=(ImageView)view.findViewById(R.id.card_image);
+            card_name =(TextView) view.findViewById(R.id.card_name);
             card_price =(TextView) view.findViewById(R.id.card_price);
             card_type =(TextView) view.findViewById(R.id.card_type);
         }
     }
-
-    public Item_adapter(List<Item> iitem_list){
-        item_list=iitem_list;
-    }
-
+    public search_adapter(List<Item> iitem_list){item_list=iitem_list;}
     public  ViewHolder onCreateViewHolder(ViewGroup parent,int viewtype)
     {
         if(mcontext==null)
             mcontext=parent.getContext();
-        View view=LayoutInflater.from(mcontext).inflate(R.layout.card_display,parent,false);
+        View view=LayoutInflater.from(mcontext).inflate(R.layout.card_display_collection_order,parent,false);
         final ViewHolder hholder=new ViewHolder(view);
         hholder.itemView.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -61,10 +59,9 @@ public class Item_adapter extends RecyclerView.Adapter<Item_adapter.ViewHolder> 
             holder.card_type.setText("借入");
         else
             holder.card_type.setText("借出");
-        Glide.with(mcontext).load(iitem.getImageList().get(0)).into(holder.card_image);
+        Glide.with(mcontext).load(R.drawable.image1).into(holder.card_image);
         holder.card_name.setText(iitem.getTitle());
         holder.card_price.setText(iitem.getTitle());
     }
     public int getItemCount(){return item_list.size();}
 }
-

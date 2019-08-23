@@ -1,32 +1,25 @@
 package com.example.a63577.myapplication;
 
 import android.content.Intent;
-
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-
 import android.support.v4.widget.SwipeRefreshLayout;
-
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
-
 import android.support.v7.widget.GridLayoutManager;
-
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-
 import com.example.a63577.myapplication.Entity.Item;
 import com.example.a63577.myapplication.constant.AppConfig;
 import com.github.clans.fab.FloatingActionButton;
-
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.FormEncodingBuilder;
@@ -36,7 +29,6 @@ import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import java.util.List;
 
 
@@ -66,12 +58,13 @@ public class MainActivity extends AppCompatActivity {
 
     private Button jie_ru;
     private Button jie_chu;
-    private Button pick;
+
     private Button dian_zi_chan_pin;
     private Button yue_qi;
     private Button shu_ji;
 
     private SwipeRefreshLayout swipe_refresh;
+
 
 
     @Override
@@ -81,11 +74,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+
         item_information = (EditText) findViewById(R.id.item_information);
-        search = (Button) findViewById(R.id.search);
+
         message = (Button) findViewById(R.id.message);
         jie_chu = (Button) findViewById(R.id.jie_chu);
         jie_ru = (Button) findViewById(R.id.jie_ru);
+
 
         FloatingActionButton fab_borrow = (FloatingActionButton) findViewById(R.id.borrow); //借入
 
@@ -94,7 +89,9 @@ public class MainActivity extends AppCompatActivity {
         fab_borrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, release_Activity.class);
+
+                Intent intent=new Intent(MainActivity.this,release_Activity.class);
+
                 intent.putExtra("borrow_or_loan", "借入");
                 startActivity(intent);
 
@@ -104,15 +101,18 @@ public class MainActivity extends AppCompatActivity {
         fab_loan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(MainActivity.this, release_Activity.class);
+
                 intent.putExtra("borrow_or_loan", "借出");
                 startActivity(intent);
 
             }
         });
 
+
         item_display = (RecyclerView) findViewById(R.id.item_display);
-        pick = (Button) findViewById(R.id.pick);
+
         dian_zi_chan_pin = (Button) findViewById(R.id.dian_zi_chan_pin);
         shu_ji = (Button) findViewById(R.id.shu_ji);
         yue_qi = (Button) findViewById(R.id.yue_qi);
@@ -122,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
         swipe_refresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
 
 
+
         swipe_refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -129,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
                 swipe_refresh.setRefreshing(false);
             }
         });
+
 
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         item_display.setLayoutManager(layoutManager);
@@ -167,58 +169,11 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        search.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                String information = item_information.getText().toString();
-                searchByName(information);
-            }
-        });
-        message.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
 
-            }
-        });
-        jie_ru.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                AppConfig.DISPLAY_ITEM = AppConfig.BASE_URL_PATH.concat("/displayBorrowGoods");
-                Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-        jie_chu.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                AppConfig.DISPLAY_ITEM = AppConfig.BASE_URL_PATH.concat("/displayLendGoods");
-                Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-        pick.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if (dian_zi_chan_pin.getVisibility() == View.GONE) {
-                    button_visible();
-                } else button_invisible();
-            }
-        });
 
-        shu_ji.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                button_invisible();
-                //这里进行书籍筛选操作
-                shaixuanByTag("书籍");
-            }
-        });
-        dian_zi_chan_pin.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                button_invisible();
-                shaixuanByTag("电子产品");
-            }
-        });
-        yue_qi.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                button_invisible();
-                shaixuanByTag("乐器");
-            }
-        });
+
+
+
         first_page.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -229,30 +184,99 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         mine.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MYActivity.class);
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(MainActivity.this, MYActivity.class);
+                                    }
+                                });
+
+
+        item_information.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if(actionId == EditorInfo.IME_ACTION_SEARCH){
+                    //点击键盘的搜索按钮后
+                    String information =item_information.getText().toString();
+                    Intent intent=new Intent(MainActivity.this,search.class);
+                    startActivity(intent);
+                    searchByName(information);
+                    }
+                return false;    }
+        });
+        message.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+
+            }
+        });
+        jie_ru.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+//借入筛选
+                chang_button_fenlei();
+
+                jie_ru.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border_2));
+                jie_ru.setTextColor(getResources().getColor(R.color.blue));
+                AppConfig.DISPLAY_ITEM = AppConfig.BASE_URL_PATH.concat("/displayBorrowGoods");
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        jie_chu.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+//借出筛选
+                chang_button_fenlei();
+
+                jie_chu.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border_2));
+                jie_chu.setTextColor(getResources().getColor(R.color.blue));
+                AppConfig.DISPLAY_ITEM = AppConfig.BASE_URL_PATH.concat("/displayLendGoods");
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        shu_ji.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                chang_button_fenlei();
+
+                shu_ji.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border_2));
+                shu_ji.setTextColor(getResources().getColor(R.color.blue));
+                //这里进行书籍筛选操作
+                shaixuanByTag("书籍");
+            }
+        });
+        dian_zi_chan_pin.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                chang_button_fenlei();
+
+                dian_zi_chan_pin.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border_2));
+                dian_zi_chan_pin.setTextColor(getResources().getColor(R.color.blue));
+                shaixuanByTag("电子产品");
+            }
+        });
+        yue_qi.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                chang_button_fenlei();
+                yue_qi.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border_2));
+                yue_qi.setTextColor(getResources().getColor(R.color.blue));
+                shaixuanByTag("乐器");
+            }
+        });
+        first_page.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+
+            }
+        });
+        mine.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent=new Intent(MainActivity.this,MYActivity.class);
                 startActivity(intent);
             }
         });
     }
 
 
-    private void refresh() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
 
-                        //这里执行刷新逻辑，也就是刷新 mlist 的内容
 
-                        adapter.notifyDataSetChanged();
-                    }
-                });
-            }
-        }).start();
-    }
+
 
     private void button_invisible() {
         dian_zi_chan_pin.setVisibility(View.GONE);
@@ -345,5 +369,38 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    private void chang_button_fenlei(){
+        jie_ru.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border));
+        jie_chu.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border));
+        shu_ji.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border));
+        yue_qi.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border));
+        dian_zi_chan_pin.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border));
+        jie_chu.setTextColor(getResources().getColor(R.color.black));
+        shu_ji.setTextColor(getResources().getColor(R.color.black));
+        dian_zi_chan_pin.setTextColor(getResources().getColor(R.color.black));
+        jie_ru.setTextColor(getResources().getColor(R.color.black));
+        yue_qi.setTextColor(getResources().getColor(R.color.black));
+    }
+            private  void refresh()
+            {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                //这里执行刷新逻辑，也就是刷新 mlist 的内容
+
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+                    }
+                }).start();
+            }
+
+
+
 
 }

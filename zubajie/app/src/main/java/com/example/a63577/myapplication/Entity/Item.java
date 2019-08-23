@@ -1,7 +1,6 @@
 package com.example.a63577.myapplication.Entity;
 
 import java.io.Serializable;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 

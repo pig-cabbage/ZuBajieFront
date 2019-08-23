@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -82,8 +82,10 @@ public class personal extends AppCompatActivity {
         preferences=getPreferences(Activity.MODE_PRIVATE);
         int userId=preferences.getInt("userId",0);
 
+        String userIdStr=String.valueOf(userId);
         OkHttpClient okHttpClient=new OkHttpClient();
-        String url= AppConfig.GET_USER_INFO.concat(user_id);
+        String url= AppConfig.GET_USER_INFO.concat("?userId=").concat(userIdStr);
+
         final Request request = new Request.Builder()
                 .url(url)
                 .get()

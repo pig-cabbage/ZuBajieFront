@@ -1,9 +1,9 @@
 package com.example.a63577.myapplication;
 
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -46,7 +46,9 @@ public class order extends AppCompatActivity {
 
         System.out.println("111111111");
 
-        item_display_order=(RecyclerView) findViewById(R.id.item_display);
+
+        item_display_order=(RecyclerView) findViewById(R.id.item_display_order);
+
 
 
         GridLayoutManager layoutManager =new GridLayoutManager(this,1);

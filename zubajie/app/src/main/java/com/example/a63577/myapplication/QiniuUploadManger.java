@@ -16,16 +16,19 @@ import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 import java.util.Random;
-import java.util.concurrent.BlockingQueue;
 
 import static android.support.constraint.Constraints.TAG;
+
 
 public  class QiniuUploadManger {
 
 
+
     private UploadManager uploadManager;
 
-    public  String uploadSingleFile(String filePath){
+
+    public String uploadSingleFile(String filePath){
+
         String key=getRandomString(20);
         String token=getToken();
         uploadManager.put(filePath, key, token,

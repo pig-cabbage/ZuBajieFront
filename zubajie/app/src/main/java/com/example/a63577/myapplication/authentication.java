@@ -1,7 +1,7 @@
 package com.example.a63577.myapplication;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 public class authentication extends AppCompatActivity {
 

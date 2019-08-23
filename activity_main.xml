@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
@@ -88,3 +89,95 @@
             />
     </LinearLayout>
 </LinearLayout>
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+        <EditText
+            android:id="@+id/item_information"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:hint="输入物品名称查询"
+            android:layout_weight="0.80" />
+
+        <Button
+            android:id="@+id/search"
+            android:layout_width="59dp"
+            android:layout_height="match_parent"
+            android:text="搜索"
+            />
+        <Button
+            android:id="@+id/message"
+            android:layout_width="58dp"
+            android:layout_height="match_parent"
+            android:text="消息"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+
+        <Button
+            android:id="@+id/bollow"
+            android:layout_width="59dp"
+            android:layout_height="match_parent"
+            android:text="借入"
+            />
+
+        <Button
+            android:id="@+id/loan"
+            android:layout_width="58dp"
+            android:layout_height="match_parent"
+            android:text="借出"
+            />
+    </LinearLayout>
+ <ListView
+     android:id="@+id/item_display"
+     android:layout_width="match_parent"
+     android:layout_height="358dp"
+     android:layout_weight="0.28"></ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:gravity="center_horizontal">
+
+
+
+        <Button
+            android:id="@+id/first_page"
+            android:layout_width="59dp"
+            android:layout_height="match_parent"
+            android:text="首页"
+            />
+
+        <Button
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="+" />
+
+        <Button
+            android:id="@+id/mine"
+            android:layout_width="61dp"
+            android:layout_height="match_parent"
+            android:text="我的"
+            />
+    </LinearLayout>
+</LinearLayout>
+>>>>>>> 66ac93432b09527aaede91420a218a55e7f8d9f7

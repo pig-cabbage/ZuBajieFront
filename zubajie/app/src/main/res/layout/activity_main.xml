@@ -15,19 +15,19 @@
         android:weightSum="1">
 
         <EditText
+
+            android:inputType="text"
+            android:singleLine="true"
+            android:imeOptions="actionSearch"
             android:id="@+id/item_information"
             android:layout_width="216dp"
-            android:layout_height="match_parent"
+            android:layout_height="45dp"
             android:layout_weight="0.80"
+            android:background="@drawable/edit_sharp"
             android:hint="输入物品名称查询" />
 
-        <Button
-            android:id="@+id/search"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/r_border"
-            android:text="搜索" />
+
+
 
         <Button
             android:id="@+id/message"
@@ -39,15 +39,22 @@
             android:text="消息" />
     </LinearLayout>
 
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="31dp"
+        android:layout_height="33dp"
+
         android:gravity="center_horizontal">
 
         <Button
             android:id="@+id/jie_ru"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
+            android:layout_marginLeft="5dp"
 
             android:background="@drawable/r_border"
             android:text="借入" />
@@ -56,11 +63,35 @@
             android:id="@+id/jie_chu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+
+            android:layout_marginLeft="5dp"
             android:background="@drawable/r_border"
             android:text="借出" />
+        <Button
+            android:id="@+id/yue_qi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/r_border"
+            android:text="乐器" />
+        <Button
+            android:id="@+id/dian_zi_chan_pin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/r_border"
+            android:text="电子产品" />
+        <Button
+        android:id="@+id/shu_ji"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+        android:background="@drawable/r_border"
+        android:text="书籍" />
 
     </LinearLayout>
+    </HorizontalScrollView>
 
     <FrameLayout android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -89,12 +120,15 @@
     </LinearLayout>
 </android.support.percent.PercentFrameLayout>
 
+
+
+
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_marginTop="300dp"
             android:layout_marginLeft="90dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
 
             >
 
@@ -102,50 +136,42 @@
             <com.github.clans.fab.FloatingActionMenu
                 android:id="@+id/fab"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="10dp"
-                android:paddingBottom="45dp"
+
+                android:layout_height="90dp"
+                android:layout_alignParentBottom="true"
                 android:paddingLeft="10dp"
-                app:menu_colorNormal="@color/gray"
+                android:paddingRight="10dp"
+                app:menu_backgroundColor="#00000000"
+                app:menu_colorNormal="@color/blue"
                 app:menu_labels_ellipsize="end"
-                app:menu_labels_singleLine="true"
-                app:menu_backgroundColor="#00000000">
+                app:menu_labels_singleLine="true">
+
 
                 <com.github.clans.fab.FloatingActionButton
                     android:id="@+id/borrow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:fab_colorNormal="@color/white"
-                    app:fab_size="mini"
-                    app:fab_label="借入" />
+
+                    app:fab_label="借入"
+                    app:fab_size="mini" />
+
 
                 <com.github.clans.fab.FloatingActionButton
                     android:id="@+id/loan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:fab_colorNormal="@color/white"
-                    app:fab_size="mini"
-                    app:fab_label="借出" />
+
+                    app:fab_label="借出"
+                    app:fab_size="mini" />
+
 
 
             </com.github.clans.fab.FloatingActionMenu>
         </RelativeLayout>
-        <RelativeLayout android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_gravity="right|center_vertical">
 
 
-        <LinearLayout android:orientation="vertical" android:layout_height="wrap_content" android:layout_width="wrap_content">
-
-        <Button android:layout_height="wrap_content" android:layout_width="60dp" android:id="@+id/dian_zi_chan_pin" android:text="电子产品" android:visibility="gone"/>
-
-        <Button android:layout_height="wrap_content" android:layout_width="60dp" android:id="@+id/shu_ji" android:text="书籍" android:visibility="gone"/>
-
-        <Button android:layout_height="wrap_content" android:layout_width="60dp" android:id="@+id/yue_qi" android:text="乐器" android:visibility="gone"/>
-
-        <Button android:layout_height="wrap_content" android:layout_width="60dp" android:id="@+id/pick" android:text="分类" android:background="@drawable/r_border"/>
-
-    </LinearLayout>
-
-    </RelativeLayout>
     </FrameLayout>
 </LinearLayout>
 

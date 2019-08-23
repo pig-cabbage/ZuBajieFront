@@ -1,12 +1,12 @@
 package com.example.a63577.myapplication;
 
+
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -32,7 +32,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.a63577.myapplication.Entity.Item;
 import com.example.a63577.myapplication.constant.AppConfig;
 import com.squareup.okhttp.Call;
-import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -48,7 +47,9 @@ public class release_Activity extends AppCompatActivity {
     String borrow_or_loan; //借入或借出
     Button selectPicture;
     List<Bitmap> bitmaps; //图片的集合
+
     List<String> pathOfImages; //存储图片路径的集合
+
 
     Bitmap bitmap;  //图片
 
@@ -59,12 +60,12 @@ public class release_Activity extends AppCompatActivity {
 
 
 
-
     EditText edit;
 
     EditText edit_title; //标题
     EditText edit_supply; //补充说明
     EditText edit_price; //价格
+
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -145,6 +146,7 @@ public class release_Activity extends AppCompatActivity {
         }
     };
 
+
     //选取图片按钮
     public void select_picture(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK, null);
@@ -168,8 +170,10 @@ public class release_Activity extends AppCompatActivity {
                     // 读取uri所在的图片
                     bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
                     bitmaps.add(bitmap);
+
                     //将图片路径存储到数组中
                     pathOfImages.add(imagePath);
+
 
                 }
                 catch (Exception e)
@@ -179,9 +183,14 @@ public class release_Activity extends AppCompatActivity {
                 }
                 //bitmap转Drawable
 
-                LinearLayout linearLayout = findViewById(R.id.line);
-                ImageView imageView = new ImageView(this);
-                 //设置图片宽高
+
+                final LinearLayout linearLayout = findViewById(R.id.line);
+                final ImageView imageView = new ImageView(this);
+
+
+
+
+
                 Drawable d = new BitmapDrawable(bitmap);
                 imageView.setBackground(d);
 
@@ -190,6 +199,33 @@ public class release_Activity extends AppCompatActivity {
                         400);//两个400分别为添加图片的大小
                 imageView.setLayoutParams(params);
                 linearLayout.addView(imageView);
+
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(release_Activity.this);
+                        dialog.setTitle("图片操作");
+                        dialog.setMessage("确定删除图片吗？");
+                        dialog.setPositiveButton("是", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                if(bitmaps!=null)
+                                    bitmaps.remove(bitmaps.size()-1);
+                                linearLayout.removeView(imageView);
+
+
+                            }
+                        });
+                        dialog.setNegativeButton("否", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                        dialog.show();
+                    }
+                });
 
             }
         }
@@ -273,9 +309,11 @@ public class release_Activity extends AppCompatActivity {
 
     //上传订单的数据
     public void submit(View v){
+
         Message msg = mHandler.obtainMessage();
 
         mHandler.sendMessage(msg);
+
 
 
 

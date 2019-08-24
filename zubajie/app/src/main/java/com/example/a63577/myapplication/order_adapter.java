@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,8 @@ public class order_adapter extends RecyclerView.Adapter<order_adapter.ViewHolder
             @Override
             public boolean onLongClick(View v) {
 
+
+
                    view.setVisibility(View.GONE);
                    return true;
             }
@@ -86,5 +89,7 @@ public class order_adapter extends RecyclerView.Adapter<order_adapter.ViewHolder
         holder.card_price.setText(iitem.getPrice());
     }
     public int getItemCount(){return item_list.size();}
+
+
 }
 

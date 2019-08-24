@@ -24,7 +24,7 @@ public  class QiniuUploadManger {
 
 
 
-    private UploadManager uploadManager;
+    private UploadManager uploadManager=new UploadManager();
 
 
     public String uploadSingleFile(String filePath){

@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         shu_ji = (Button) findViewById(R.id.shu_ji);
         yue_qi = (Button) findViewById(R.id.yue_qi);
         first_page = (Button) findViewById(R.id.first_page);
-        add = (Button) findViewById(R.id.add);
+
         mine = (Button) findViewById(R.id.mine);
         swipe_refresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
 
@@ -157,8 +157,6 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("进入成功");
                 String responseStr = response.body().string();
                 List<Item> orderEntitiest = new ArrayList<>();
-                JSON json=JSON.parseObject(responseStr);
-
                 orderEntitiest = JSONObject.parseArray(responseStr, Item.class);
                 System.out.println("222222");
                 Message msg = mHandler.obtainMessage();
@@ -179,10 +177,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        add.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            }
-        });
+
         mine.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         Intent intent = new Intent(MainActivity.this, MYActivity.class);

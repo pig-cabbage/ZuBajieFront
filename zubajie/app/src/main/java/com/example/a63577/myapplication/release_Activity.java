@@ -46,9 +46,9 @@ public class release_Activity extends AppCompatActivity {
 
     String borrow_or_loan; //借入或借出
     Button selectPicture;
-    List<Bitmap> bitmaps; //图片的集合
+    List<Bitmap> bitmaps=new ArrayList<>(); //图片的集合
 
-    List<String> pathOfImages; //存储图片路径的集合
+    List<String> pathOfImages=new ArrayList<>(); //存储图片路径的集合
 
 
     Bitmap bitmap;  //图片
@@ -85,7 +85,10 @@ public class release_Activity extends AppCompatActivity {
                     String key="";
                     QiniuUploadManger uploadImage=new QiniuUploadManger();
                     for(int k=0;k<pathOfImages.size();++k){
-                        key.concat(uploadImage.uploadSingleFile(pathOfImages.get(i))+" ");
+                        if(k==pathOfImages.size()-1)
+                            key.concat("picture.dormassistant.wang/"+uploadImage.uploadSingleFile(pathOfImages.get(k)));
+                        else
+                            key.concat("picture.dormassistant.wang/"+uploadImage.uploadSingleFile(pathOfImages.get(k))+" ");
                     }
                     String url;
                     if(borrow_or_loan.equals("借入"))
@@ -100,7 +103,8 @@ public class release_Activity extends AppCompatActivity {
                         builder.add("tag",item_type);
                         builder.add("validity",item_time);
                         builder.add("keyList",key);
-                        builder.add("userId",userId);
+                        builder.add("userId","1");
+                        System.out.println(item_time+item_type+"68799t434");
 
 
                     final Request request = new Request.Builder()
@@ -173,6 +177,8 @@ public class release_Activity extends AppCompatActivity {
 
                     //将图片路径存储到数组中
                     pathOfImages.add(imagePath);
+                    System.out.println(pathOfImages.toString()+"12345");
+                    System.out.println(bitmaps.toString()+"67890");
 
 
                 }
@@ -248,7 +254,7 @@ public class release_Activity extends AppCompatActivity {
         edit_price = (EditText) findViewById(R.id.price);
 
 
-        final String[] ctype = new String[]{"全部", "资料", "电器","文具", "其他"};
+        final String[] ctype = new String[]{"全部", "资料", "电子产品","文具", "其他"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ctype);  //创建一个数组适配器
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);     //设置下拉列表框的下拉选项样式
 
@@ -286,6 +292,7 @@ public class release_Activity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 item_time = ctype2[arg2];
+                System.out.println(item_time+"hggghgcgh");
                 //设置显示当前选择的项
                 arg0.setVisibility(View.VISIBLE);
                 if(item_time=="无限"){

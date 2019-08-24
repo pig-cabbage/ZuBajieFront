@@ -52,6 +52,25 @@ public class loginActivity extends AppCompatActivity {
         //创建preference的editor对象
         editor=preferences.edit();
 
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(loginActivity.this, register.class);
+                startActivity(intent);
+
+            }
+        });
+        signIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(loginActivity.this, MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
         final String phoneNumStr=phoneNumber.getText().toString();
         final String passwordStr=password.getText().toString();
         signIn.setOnClickListener(new View.OnClickListener() {
@@ -91,6 +110,8 @@ public class loginActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     public void register(){

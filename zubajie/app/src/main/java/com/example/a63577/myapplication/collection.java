@@ -49,7 +49,7 @@ public class collection extends AppCompatActivity {
 
 
 
-        item_display_collection=(RecyclerView) findViewById(R.id.item_display);
+        item_display_collection=(RecyclerView) findViewById(R.id.item_display_collection);
 
 
 

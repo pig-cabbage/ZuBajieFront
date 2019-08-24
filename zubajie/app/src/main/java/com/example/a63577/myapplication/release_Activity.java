@@ -28,9 +28,11 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.a63577.myapplication.Entity.Item;
 import com.example.a63577.myapplication.constant.AppConfig;
+import com.qiniu.android.utils.Json;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.OkHttpClient;
@@ -52,7 +54,7 @@ public class release_Activity extends AppCompatActivity {
 
 
     Bitmap bitmap;  //图片
-
+    int id =0;
 
     String item_type; //分类
 
@@ -83,13 +85,17 @@ public class release_Activity extends AppCompatActivity {
 
                     String price = edit_price.getText().toString();
                     String key="";
+                    System.out.println(pathOfImages.size()+"     1111111111");
                     QiniuUploadManger uploadImage=new QiniuUploadManger();
                     for(int k=0;k<pathOfImages.size();++k){
-                        if(k==pathOfImages.size()-1)
-                            key.concat("picture.dormassistant.wang/"+uploadImage.uploadSingleFile(pathOfImages.get(k)));
+                        if(k==pathOfImages.size()-1) {
+                            key=key.concat("picture.dormassistant.wang/"+uploadImage.uploadSingleFile(pathOfImages.get(k)) + " ");
+                            System.out.println("asdsadsad");
+                        }
                         else
-                            key.concat("picture.dormassistant.wang/"+uploadImage.uploadSingleFile(pathOfImages.get(k))+" ");
+                            key=key.concat("picture.dormassistant.wang/"+uploadImage.uploadSingleFile(pathOfImages.get(k))+" ");
                     }
+                    System.out.println(key+"999999999");
                     String url;
                     if(borrow_or_loan.equals("借入"))
                         url=AppConfig.BASE_URL_PATH.concat("/addborrowitem");
@@ -124,12 +130,16 @@ public class release_Activity extends AppCompatActivity {
                         public void onResponse(Response response) throws IOException {
                             System.out.println("添加成功");
                             String responseStr = response.body().string();
-                            List<Item> orderEntitiest = new ArrayList<>();
-                            orderEntitiest = JSONObject.parseArray(responseStr, Item.class);
+                            JSON json=JSON.parseObject(responseStr);
+                            int i=((JSONObject) json).getByte("success");
+                            if(i==1){
+                                Message msg = kHandler.obtainMessage();
+                                kHandler.sendMessage(msg);
+                                Intent intent = new Intent(release_Activity.this , MainActivity.class);
+                                startActivity(intent);
+                            }
                             System.out.println("222222");
-                            Message msg = mHandler.obtainMessage();
-                            msg.obj = orderEntitiest;
-                            mHandler.sendMessage(msg);
+
 
                         }
 
@@ -144,10 +154,16 @@ public class release_Activity extends AppCompatActivity {
                     })
 
                     .create();
-
-
             alertDialog1.show();
         }
+    };
+    private Handler kHandler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            Toast.makeText(release_Activity.this, "提交成功", Toast.LENGTH_SHORT).show();
+
+        }
+
     };
 
 
@@ -165,7 +181,7 @@ public class release_Activity extends AppCompatActivity {
             if (data != null) {
                 // 得到图片的全路径
                 Uri uri = data.getData();
-                String imagePath = getImagePath(uri,null);
+                final String imagePath = getImagePath(uri,null);
                 Toast toast =Toast.makeText(this,imagePath,Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER, 500, 500);//设置提示框显示的位置
                 toast.show();//显示消息
@@ -204,6 +220,8 @@ public class release_Activity extends AppCompatActivity {
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(400,
                         400);//两个400分别为添加图片的大小
                 imageView.setLayoutParams(params);
+                imageView.setId(id);//id从0开始计数
+                id++;
                 linearLayout.addView(imageView);
 
                 imageView.setOnClickListener(new View.OnClickListener() {
@@ -216,10 +234,19 @@ public class release_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
 
-                                if(bitmaps!=null)
-                                    bitmaps.remove(bitmaps.size()-1);
+                                if(bitmaps!=null) {
+                                    int i_d=imageView.getId();//要删的id（也是位置）
+                                    bitmaps.remove(i_d);
+                                    pathOfImages.remove(i_d);
+                                    imageView.setId(-1);
+                                    ImageView ima;//后面的id全减1
+                                    for(int a=i_d+1;a<id;a++) {
+                                        ima=(ImageView)findViewById(a) ;
+                                        ima.setId((int)ima.getId()-1);
+                                    }
+                                }
                                 linearLayout.removeView(imageView);
-
+                                id--;
 
                             }
                         });
@@ -254,7 +281,9 @@ public class release_Activity extends AppCompatActivity {
         edit_price = (EditText) findViewById(R.id.price);
 
 
+
         final String[] ctype = new String[]{"书籍", "资料", "电子产品","文具","乐器","生活", "其他"};
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ctype);  //创建一个数组适配器
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);     //设置下拉列表框的下拉选项样式
 
@@ -318,10 +347,13 @@ public class release_Activity extends AppCompatActivity {
     public void submit(View v){
 
         Message msg = mHandler.obtainMessage();
+        if(item_time!="无限"){
+            item_time=edit.getText().toString();
+        }
 
         //获得天数
         if(item_time!="无限")
-            item_time = edit.getText().toString()+"天";
+            item_time = edit.getText().toString();
 
         mHandler.sendMessage(msg);
 

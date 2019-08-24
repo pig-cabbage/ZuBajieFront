@@ -15,7 +15,7 @@
         <activity android:name=".register"></activity>
         <activity android:name=".search" />
         <activity android:name=".person_modify" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".loginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,6 +43,7 @@
         <activity android:name=".release_Activity" />
         <activity android:name=".chat_Activity" />
         <activity android:name=".authentication" />
+        <activity android:name=".MYActivity"/>
         <activity android:name=".constant.Data" />
     </application>
 

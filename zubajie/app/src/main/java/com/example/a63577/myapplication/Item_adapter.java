@@ -37,7 +37,7 @@ public class Item_adapter extends RecyclerView.Adapter<Item_adapter.ViewHolder> 
         item_list=iitem_list;
     }
 
-    public  ViewHolder onCreateViewHolder(ViewGroup parent,int viewtype)
+    public  ViewHolder onCreateViewHolder(ViewGroup parent, final int viewtype)
     {
         if(mcontext==null)
             mcontext=parent.getContext();
@@ -47,6 +47,7 @@ public class Item_adapter extends RecyclerView.Adapter<Item_adapter.ViewHolder> 
             public void onClick(View v){
                 int position=hholder.getAdapterPosition();
                 Item item1=item_list.get(position);
+                item1.setViewCount(item1.getViewCount()+1);//浏览次数加1
                 Intent intent=new Intent(mcontext,item_detail_page_Activity.class);
                 intent.putExtra("item",item1);
                 mcontext.startActivity(intent);

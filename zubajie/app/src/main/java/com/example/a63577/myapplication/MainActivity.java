@@ -8,6 +8,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -30,6 +31,8 @@ import com.squareup.okhttp.Response;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.support.constraint.Constraints.TAG;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -165,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Response response) throws IOException {
                 System.out.println("进入成功");
+
                 String responseStr = response.body().string();
                 List<Item> orderEntitiest = new ArrayList<>();
                 orderEntitiest = JSONObject.parseArray(responseStr, Item.class);
@@ -270,6 +274,7 @@ public class MainActivity extends AppCompatActivity {
                 chang_button_fenlei();
                 zi_liao.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border_2));
                 zi_liao.setTextColor(getResources().getColor(R.color.blue));
+                shaixuanByTag("资料");
 
             }
         });
@@ -278,6 +283,7 @@ public class MainActivity extends AppCompatActivity {
                 chang_button_fenlei();
                 wen_ju.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border_2));
                 wen_ju.setTextColor(getResources().getColor(R.color.blue));
+                shaixuanByTag("文具");
             }
         });
         sheng_huo.setOnClickListener(new View.OnClickListener(){
@@ -285,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
                 chang_button_fenlei();
                 sheng_huo.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border_2));
                 sheng_huo.setTextColor(getResources().getColor(R.color.blue));
-
+                shaixuanByTag("生活");
             }
         });
         qi_ta.setOnClickListener(new View.OnClickListener(){
@@ -293,7 +299,7 @@ public class MainActivity extends AppCompatActivity {
                 chang_button_fenlei();
                 qi_ta.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border_2));
                 qi_ta.setTextColor(getResources().getColor(R.color.blue));
-
+                shaixuanByTag("其他");
             }
         });
 

@@ -12,9 +12,10 @@ public class AppConfig {
     public final static  String DIS_COLLECT=BASE_URL_PATH.concat("/displayCollect");
 
     public final static String ADD_MORE_STUDENTS = BASE_URL_PATH.concat("/add_more_students");
-    public final static String GET_TOKEN = BASE_URL_PATH.concat("/getToken");
+    public final static String GET_TOKEN = BASE_URL_PATH.concat("/upload/getToken");
     public final static String LOGIN_IN = BASE_URL_PATH.concat("/login");
     public final static String GET_USER_INFO= BASE_URL_PATH.concat("/getUserInfo");
+    public final static String LOGINUP=BASE_URL_PATH.concat("/loginup");
 
     public final static String MODIFY_USER_INFO= BASE_URL_PATH.concat("/modifyUserInformation");
 

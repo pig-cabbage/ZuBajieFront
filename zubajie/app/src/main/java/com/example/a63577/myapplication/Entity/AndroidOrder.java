@@ -4,7 +4,7 @@ package com.example.a63577.myapplication.Entity;
 
 import java.io.Serializable;
 import java.util.Date;
-
+import java.util.List;
 
 
 public class AndroidOrder implements Serializable {
@@ -63,6 +63,8 @@ public class AndroidOrder implements Serializable {
     private Integer goodsId;
 
     private boolean isBorrow;
+
+    private List<String> imageList;
 
     /**
      *
@@ -281,6 +283,7 @@ public class AndroidOrder implements Serializable {
         sb.append(", time=").append(time);
         sb.append(", orderState=").append(orderState);
         sb.append(", goodsId=").append(goodsId);
+        sb.append(", imageList=").append(imageList);
 
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
@@ -317,6 +320,14 @@ public class AndroidOrder implements Serializable {
 
     public void setBorrow(boolean borrow) {
         isBorrow = borrow;
+    }
+
+    public List<String> getImageList() {
+        return imageList;
+    }
+
+    public void setImageList(List<String> imageList) {
+        this.imageList = imageList;
     }
 }
 

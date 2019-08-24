@@ -312,6 +312,10 @@ public class release_Activity extends AppCompatActivity {
 
         Message msg = mHandler.obtainMessage();
 
+        //获得天数
+        if(item_time!="无限")
+            item_time = edit.getText().toString()+"天";
+
         mHandler.sendMessage(msg);
 
 

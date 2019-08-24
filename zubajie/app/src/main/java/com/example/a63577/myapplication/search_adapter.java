@@ -45,6 +45,7 @@ public class search_adapter extends RecyclerView.Adapter<search_adapter.ViewHold
             public void onClick(View v){
                 int position=hholder.getAdapterPosition();
                 Item item1=item_list.get(position);
+                item1.setViewCount(item1.getViewCount()+1);
                 Intent intent=new Intent(mcontext,item_detail_page_Activity.class);
                 intent.putExtra("item",item1);
                 mcontext.startActivity(intent);

@@ -39,7 +39,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <Button
-            android:id="@+id/button_auth"
+            android:id="@+id/button_collection"
             android:layout_width="341dp"
             android:layout_height="46dp"
             android:layout_marginStart="8dp"
@@ -66,22 +66,7 @@
             android:text="信誉积分"
             android:textColor="@android:color/black"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.703"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/button9"
-            android:layout_width="341dp"
-            android:layout_height="46dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="72dp"
-            android:background="@drawable/r_border"
-            android:text="设置"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
+            android:onClick="tip"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.703"
@@ -95,10 +80,10 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="184dp"
             android:background="@drawable/r_border"
-            android:text="我的订单"
+            android:onClick="btn_order"
+            android:text="我的发布"
             android:textColor="@android:color/black"
             android:textSize="18sp"
-            android:onClick="btn_order"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.703"

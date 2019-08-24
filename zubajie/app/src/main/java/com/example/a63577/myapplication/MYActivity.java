@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -60,4 +61,16 @@ finish();
         }
 
     };
+
+
+
+    public void tip(View view) {
+        Toast toast =Toast.makeText(this,"敬请期待",Toast.LENGTH_SHORT);
+        //参数1：当前的上下文环境。可用getApplicationContext()或this
+        //参数2：要显示的字符串。
+        //参数3：显示的时间长短。Toast默认的有两个LENGTH_LONG(长)和LENGTH_SHORT(短)
+        toast.setGravity(Gravity.CENTER, 500, 500);//设置提示框显示的位置
+
+        toast.show();//显示消息
+    }
 }

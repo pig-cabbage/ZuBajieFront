@@ -52,7 +52,7 @@
             android:layout_height="76dp"
             android:layout_weight="0.42"
             android:background="@drawable/check_border"
-            android:text="想借" />
+            android:text="联系主人" />
 
 </LinearLayout>
 

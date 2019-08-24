@@ -52,6 +52,7 @@ public class loginActivity extends AppCompatActivity {
         //创建preference的editor对象
         editor = preferences.edit();
 
+
         final String phoneNumStr = phoneNumber.getText().toString();
         final String passwordStr = password.getText().toString();
         signIn.setOnClickListener(new View.OnClickListener() {

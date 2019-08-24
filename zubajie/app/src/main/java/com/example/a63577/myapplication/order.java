@@ -6,6 +6,8 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.a63577.myapplication.Entity.AndroidOrder;
@@ -43,6 +45,16 @@ public class order extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
+
+
+        //提示用户如何下架自己的发布
+        Toast toast =Toast.makeText(this,"长按物品栏下架",Toast.LENGTH_SHORT);
+        //参数1：当前的上下文环境。可用getApplicationContext()或this
+        //参数2：要显示的字符串。
+        //参数3：显示的时间长短。Toast默认的有两个LENGTH_LONG(长)和LENGTH_SHORT(短)
+        toast.setGravity(Gravity.CENTER, 500, 500);//设置提示框显示的位置
+
+        toast.show();//显示消息
 
         System.out.println("111111111");
 

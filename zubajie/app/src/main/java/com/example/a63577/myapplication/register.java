@@ -4,13 +4,17 @@ package com.example.a63577.myapplication;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +24,7 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.example.a63577.myapplication.Entity.Item;
 import com.example.a63577.myapplication.constant.AppConfig;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
@@ -29,6 +34,8 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class register extends AppCompatActivity {
@@ -57,8 +64,18 @@ public class register extends AppCompatActivity {
 
 
     private SharedPreferences preferences;
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            Toast.makeText(register.this, "注册成功", Toast.LENGTH_SHORT).show();
+
+            Intent intent=new Intent(register.this,MainActivity.class);
+            startActivity(intent);
+        }
+    };
 
     Bitmap bitmap;
+    String imagePath;
 
     public void select(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK, null);
@@ -77,6 +94,7 @@ public class register extends AppCompatActivity {
                 try {
                     // 读取uri所在的图片
                     bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+                    imagePath=getImagePath(uri,null);
 
                 } catch (Exception e) {
 
@@ -150,7 +168,46 @@ public class register extends AppCompatActivity {
                 String Code=T_Code.getText().toString();
                 String phoneNumber=T_phone_number.getText().toString();
                 String address=T_address.getText().toString();
+                OkHttpClient mOkHttpClient = new OkHttpClient();
+                FormEncodingBuilder builder = new FormEncodingBuilder();
+                builder.add("userName",userName);
+                builder.add("nickName",nickName);
+                builder.add("sex",String.valueOf(sex[0]));
+                builder.add("phoneNumber",phoneNumber);
+                builder.add("password",Code);
+                builder.add("address",address);
+                builder.add("headPortrait",imagePath);
 
+
+
+                final Request request = new Request.Builder()
+                        .url(AppConfig.LOGINUP)
+                        .post(builder.build())
+                        .build();
+
+                Call call = mOkHttpClient.newCall(request);
+                call.enqueue(new Callback() {
+
+                    @Override
+                    public void onFailure(Request request, IOException e) {
+                        System.out.println(e.toString());
+                    }
+
+                    @Override
+                    public void onResponse(Response response) throws IOException {
+                        System.out.println("进入成功");
+
+                        String responseStr = response.body().string();
+                        JSON json = JSON.parseObject(responseStr);
+                        int i = ((JSONObject) json).getByte("success");
+                        if(i==1) {
+                            Message msg = mHandler.obtainMessage();
+
+                            mHandler.sendMessage(msg);
+                        }
+                    }
+
+                });
 
 
             }
@@ -166,7 +223,20 @@ public class register extends AppCompatActivity {
         });
     }
 
-
+    private String getImagePath(Uri uri, String selection){
+        String path = null;
+        //通过uri和selection来获取真实的图片路径
+        Cursor cursor = getContentResolver().query(uri, null, selection, null, null);
+        if(cursor != null){
+            if(cursor.moveToFirst()){
+                path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.
+                        Media.DATA));
+            }
+            cursor.close();
+        }
+        Log.i(path, "相册选择");
+        return path;
+    }
 
 
 }

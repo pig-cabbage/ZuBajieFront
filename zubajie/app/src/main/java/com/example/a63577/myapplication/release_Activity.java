@@ -281,7 +281,9 @@ public class release_Activity extends AppCompatActivity {
         edit_price = (EditText) findViewById(R.id.price);
 
 
-        final String[] ctype = new String[]{"书籍", "资料", "电子产品","文具","乐器","生活用品", "其他"};
+
+        final String[] ctype = new String[]{"书籍", "资料", "电子产品","文具","乐器","生活", "其他"};
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ctype);  //创建一个数组适配器
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);     //设置下拉列表框的下拉选项样式
 

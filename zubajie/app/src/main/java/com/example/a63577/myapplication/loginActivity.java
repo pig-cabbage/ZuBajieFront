@@ -40,31 +40,31 @@ public class loginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        signIn=(Button)findViewById(R.id.button6);
-        signUp=(Button)findViewById(R.id.button4);
-        otherLogin=(Button)findViewById(R.id.button3);
+        signIn = (Button) findViewById(R.id.button6);
+        signUp = (Button) findViewById(R.id.button4);
+        otherLogin = (Button) findViewById(R.id.button3);
 
-        phoneNumber=(EditText) findViewById(R.id.editText2);
-        password=(EditText) findViewById(R.id.editText3);
+        phoneNumber = (EditText) findViewById(R.id.editText2);
+        password = (EditText) findViewById(R.id.editText3);
 
         //获取当前Activity的sharedPreference,onCreate函数之前不能调用getPreference
-        preferences= getPreferences(Activity.MODE_PRIVATE);
+        preferences = getPreferences(Activity.MODE_PRIVATE);
         //创建preference的editor对象
-        editor=preferences.edit();
+        editor = preferences.edit();
 
-        final String phoneNumStr=phoneNumber.getText().toString();
-        final String passwordStr=password.getText().toString();
+        final String phoneNumStr = phoneNumber.getText().toString();
+        final String passwordStr = password.getText().toString();
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OkHttpClient okHttpClient=new OkHttpClient();
+                OkHttpClient okHttpClient = new OkHttpClient();
                 FormEncodingBuilder builder = new FormEncodingBuilder();
-                String url=AppConfig.LOGIN_IN+"?phoneNumber="+phoneNumStr+"&password="+passwordStr;
+                String url = AppConfig.LOGIN_IN + "?phoneNumber=" + phoneNumStr + "&password=" + passwordStr;
                 final Request request = new Request.Builder()
                         .url(url)
                         .get()
                         .build();
-                Call call=okHttpClient.newCall(request);
+                Call call = okHttpClient.newCall(request);
                 call.enqueue(new Callback() {
                     @Override
                     public void onFailure(Request request, IOException e) {
@@ -75,26 +75,29 @@ public class loginActivity extends AppCompatActivity {
                     public void onResponse(Response response) throws IOException {
 
                         String responseStr = response.body().string();
-                        JSON json=JSON.parseObject(responseStr);
-                        int i=((JSONObject) json).getByte("success");
-                        int userId=((JSONObject) json).getInteger("userId");
-                        if(i==0){
-                            Toast toast =Toast.makeText(loginActivity.this,"用户名或密码错误",Toast.LENGTH_LONG);
+                        JSON json = JSON.parseObject(responseStr);
+                        int i = ((JSONObject) json).getByte("success");
+                        int userId = ((JSONObject) json).getInteger("userId");
+                        if (i == 0) {
+                            Toast toast = Toast.makeText(loginActivity.this, "用户名或密码错误", Toast.LENGTH_LONG);
                             toast.show();
-                        }else {
-                            editor.putBoolean("isLogged",true);
-                            editor.putInt("userId",userId);
-                            Toast.makeText(loginActivity.this,"登陆成功",Toast.LENGTH_LONG).show();
+                        } else {
+                            editor.putBoolean("isLogged", true);
+                            editor.putInt("userId", userId);
+                            Toast.makeText(loginActivity.this, "登陆成功", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
 
             }
         });
+
     }
 
-    public void register(){
-        Intent intent=new Intent(loginActivity.this,register.class);
+    public void register(View v) {
+        Intent intent = new Intent(loginActivity.this, register.class);
         startActivity(intent);
     }
+
+
 }

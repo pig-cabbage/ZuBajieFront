@@ -29,18 +29,23 @@ import com.example.a63577.myapplication.constant.AppConfig;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import okhttp3.FormBody;
 
 
 public class register extends AppCompatActivity {
 
-
+    public static final MediaType JSONa= MediaType.parse("application/json; charset=utf-8");
     private String user_name = "???";
     private String nick_name = "???";
     private String sex = "???";
@@ -169,8 +174,44 @@ public class register extends AppCompatActivity {
                 String Code=T_Code.getText().toString();
                 String phoneNumber=T_phone_number.getText().toString();
                 String address=T_address.getText().toString();
+//                HashMap<String,String> paramsMap=new HashMap<>();
+//                paramsMap.put("userName",userName);
+//                paramsMap.put("nickName",nickName);
+//                paramsMap.put("sex",String.valueOf(sex[0]));
+//                paramsMap.put("phoneNumber",phoneNumber);
+//                paramsMap.put("password",Code);
+//                paramsMap.put("address",address);
+//                QiniuUploadManger uploadImage=new QiniuUploadManger();
+//                key="picture.dormassistant.wang/"+uploadImage.uploadSingleFile(imagePath) ;
+//                paramsMap.put("headPortrait",key);
+//                RequestBody builder =  RequestBody.create("application/json; charset=utf-8",);
+//                for (String key : paramsMap.keySet()) {
+//                    //追加表单信息
+//                    builder.add(key, paramsMap.get(key));
+//                }
+//                OkHttpClient okHttpClient=new OkHttpClient();
+//
+//                Request request=new   Request.Builder().url(AppConfig.LOGINUP).post(formBody).build();
+//                Call call=okHttpClient.newCall(request);
+//                call.enqueue(new Callback() {
+//                    @Override
+//                    public void onFailure(Call call, IOException e) {
+//                        //请求失败的处理
+//                    }
+//                    @Override
+//                    public void onResponse(Call call, Response response) throws IOException {
+//
+//                    }
+//                });
                 OkHttpClient mOkHttpClient = new OkHttpClient();
                 FormEncodingBuilder builder = new FormEncodingBuilder();
+                JSONObject paramsMap=new JSONObject();
+                paramsMap.put("userName",userName);
+                paramsMap.put("nickName",nickName);
+                paramsMap.put("sex",sex[0]);
+                paramsMap.put("phoneNumber",phoneNumber);
+                paramsMap.put("password",Code);
+                paramsMap.put("address",address);
                 builder.add("userName",userName);
                 builder.add("nickName",nickName);
                 builder.add("sex",String.valueOf(sex[0]));
@@ -180,12 +221,15 @@ public class register extends AppCompatActivity {
                 QiniuUploadManger uploadImage=new QiniuUploadManger();
                 key="picture.dormassistant.wang/"+uploadImage.uploadSingleFile(imagePath) ;
                 builder.add("headPortrait",key);
+                paramsMap.put("headPortrait",key);
+                paramsMap.put("score",100);
 
-
+                String json=paramsMap.toString();
+                RequestBody body=RequestBody.create(JSONa,json);
 
                 final Request request = new Request.Builder()
                         .url(AppConfig.LOGINUP)
-                        .post(builder.build())
+                        .post(body)
                         .build();
 
                 Call call = mOkHttpClient.newCall(request);

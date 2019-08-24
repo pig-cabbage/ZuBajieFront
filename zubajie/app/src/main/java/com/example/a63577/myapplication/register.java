@@ -75,7 +75,8 @@ public class register extends AppCompatActivity {
     };
 
     Bitmap bitmap;
-    String imagePath;
+    String imagePath="";
+    String key="";
 
     public void select(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK, null);
@@ -176,7 +177,9 @@ public class register extends AppCompatActivity {
                 builder.add("phoneNumber",phoneNumber);
                 builder.add("password",Code);
                 builder.add("address",address);
-                builder.add("headPortrait",imagePath);
+                QiniuUploadManger uploadImage=new QiniuUploadManger();
+                key="picture.dormassistant.wang/"+uploadImage.uploadSingleFile(imagePath) ;
+                builder.add("headPortrait",key);
 
 
 

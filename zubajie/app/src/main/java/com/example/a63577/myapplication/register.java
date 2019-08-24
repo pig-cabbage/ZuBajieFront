@@ -174,35 +174,7 @@ public class register extends AppCompatActivity {
                 String Code=T_Code.getText().toString();
                 String phoneNumber=T_phone_number.getText().toString();
                 String address=T_address.getText().toString();
-//                HashMap<String,String> paramsMap=new HashMap<>();
-//                paramsMap.put("userName",userName);
-//                paramsMap.put("nickName",nickName);
-//                paramsMap.put("sex",String.valueOf(sex[0]));
-//                paramsMap.put("phoneNumber",phoneNumber);
-//                paramsMap.put("password",Code);
-//                paramsMap.put("address",address);
-//                QiniuUploadManger uploadImage=new QiniuUploadManger();
-//                key="picture.dormassistant.wang/"+uploadImage.uploadSingleFile(imagePath) ;
-//                paramsMap.put("headPortrait",key);
-//                RequestBody builder =  RequestBody.create("application/json; charset=utf-8",);
-//                for (String key : paramsMap.keySet()) {
-//                    //追加表单信息
-//                    builder.add(key, paramsMap.get(key));
-//                }
-//                OkHttpClient okHttpClient=new OkHttpClient();
-//
-//                Request request=new   Request.Builder().url(AppConfig.LOGINUP).post(formBody).build();
-//                Call call=okHttpClient.newCall(request);
-//                call.enqueue(new Callback() {
-//                    @Override
-//                    public void onFailure(Call call, IOException e) {
-//                        //请求失败的处理
-//                    }
-//                    @Override
-//                    public void onResponse(Call call, Response response) throws IOException {
-//
-//                    }
-//                });
+
                 OkHttpClient mOkHttpClient = new OkHttpClient();
                 FormEncodingBuilder builder = new FormEncodingBuilder();
                 JSONObject paramsMap=new JSONObject();
@@ -212,12 +184,7 @@ public class register extends AppCompatActivity {
                 paramsMap.put("phoneNumber",phoneNumber);
                 paramsMap.put("password",Code);
                 paramsMap.put("address",address);
-                builder.add("userName",userName);
-                builder.add("nickName",nickName);
-                builder.add("sex",String.valueOf(sex[0]));
-                builder.add("phoneNumber",phoneNumber);
-                builder.add("password",Code);
-                builder.add("address",address);
+
                 QiniuUploadManger uploadImage=new QiniuUploadManger();
                 key="picture.dormassistant.wang/"+uploadImage.uploadSingleFile(imagePath) ;
                 builder.add("headPortrait",key);
@@ -233,6 +200,7 @@ public class register extends AppCompatActivity {
                         .build();
 
                 Call call = mOkHttpClient.newCall(request);
+                @Override
                 call.enqueue(new Callback() {
 
                     @Override
@@ -240,7 +208,6 @@ public class register extends AppCompatActivity {
                         System.out.println(e.toString());
                     }
 
-                    @Override
                     public void onResponse(Response response) throws IOException {
                         System.out.println("进入成功");
 

@@ -208,8 +208,9 @@ public class MainActivity extends AppCompatActivity {
                     //点击键盘的搜索按钮后
                     String information =item_information.getText().toString();
                     Intent intent=new Intent(MainActivity.this,search.class);
+                    intent.putExtra("information",information);
                     startActivity(intent);
-                    searchByName(information);
+
                     }
                 return false;    }
         });

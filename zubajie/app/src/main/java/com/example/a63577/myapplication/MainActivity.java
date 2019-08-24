@@ -58,10 +58,13 @@ public class MainActivity extends AppCompatActivity {
 
     private Button jie_ru;
     private Button jie_chu;
-
     private Button dian_zi_chan_pin;
     private Button yue_qi;
     private Button shu_ji;
+    private Button zi_liao;
+    private Button wen_ju;
+    private Button sheng_huo;
+    private Button qi_ta;
 
     private SwipeRefreshLayout swipe_refresh;
 
@@ -116,6 +119,13 @@ public class MainActivity extends AppCompatActivity {
         dian_zi_chan_pin = (Button) findViewById(R.id.dian_zi_chan_pin);
         shu_ji = (Button) findViewById(R.id.shu_ji);
         yue_qi = (Button) findViewById(R.id.yue_qi);
+        zi_liao = (Button) findViewById(R.id.zi_liao);
+        wen_ju = (Button) findViewById(R.id.wen_ju);
+        sheng_huo = (Button) findViewById(R.id.sheng_huo);
+        qi_ta = (Button) findViewById(R.id.qi_ta);
+
+
+
         first_page = (Button) findViewById(R.id.first_page);
 
         mine = (Button) findViewById(R.id.mine);
@@ -255,6 +265,39 @@ public class MainActivity extends AppCompatActivity {
                 shaixuanByTag("乐器");
             }
         });
+        zi_liao.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                chang_button_fenlei();
+                zi_liao.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border_2));
+                zi_liao.setTextColor(getResources().getColor(R.color.blue));
+
+            }
+        });
+        wen_ju.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                chang_button_fenlei();
+                wen_ju.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border_2));
+                wen_ju.setTextColor(getResources().getColor(R.color.blue));
+            }
+        });
+        sheng_huo.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                chang_button_fenlei();
+                sheng_huo.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border_2));
+                sheng_huo.setTextColor(getResources().getColor(R.color.blue));
+
+            }
+        });
+        qi_ta.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                chang_button_fenlei();
+                qi_ta.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border_2));
+                qi_ta.setTextColor(getResources().getColor(R.color.blue));
+
+            }
+        });
+
+
         first_page.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
 
@@ -371,11 +414,20 @@ public class MainActivity extends AppCompatActivity {
         shu_ji.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border));
         yue_qi.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border));
         dian_zi_chan_pin.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border));
+        sheng_huo.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border));
+        zi_liao.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border));
+        wen_ju.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border));
+        qi_ta.setBackgroundDrawable(getResources().getDrawable(R.drawable.r_border));
+
         jie_chu.setTextColor(getResources().getColor(R.color.black));
         shu_ji.setTextColor(getResources().getColor(R.color.black));
         dian_zi_chan_pin.setTextColor(getResources().getColor(R.color.black));
         jie_ru.setTextColor(getResources().getColor(R.color.black));
         yue_qi.setTextColor(getResources().getColor(R.color.black));
+        sheng_huo.setTextColor(getResources().getColor(R.color.black));
+        zi_liao.setTextColor(getResources().getColor(R.color.black));
+        wen_ju.setTextColor(getResources().getColor(R.color.black));
+        qi_ta.setTextColor(getResources().getColor(R.color.black));
     }
             private  void refresh()
             {

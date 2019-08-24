@@ -90,6 +90,41 @@
         android:background="@drawable/r_border"
         android:text="书籍" />
 
+        <Button
+            android:id="@+id/zi_liao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/r_border"
+            android:text="资料" />
+
+        <Button
+            android:id="@+id/wen_ju"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/r_border"
+            android:text="文具" />
+
+        <Button
+            android:id="@+id/sheng_huo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/r_border"
+            android:text="生活用品" />
+
+        <Button
+            android:id="@+id/qi_ta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/r_border"
+            android:text="其他" />
     </LinearLayout>
     </HorizontalScrollView>
 

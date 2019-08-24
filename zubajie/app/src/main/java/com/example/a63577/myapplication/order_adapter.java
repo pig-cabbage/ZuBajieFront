@@ -59,7 +59,7 @@ public class order_adapter extends RecyclerView.Adapter<order_adapter.ViewHolder
             holder.card_type.setText("借入");
         else
             holder.card_type.setText("借出");
-        Glide.with(mcontext).load(R.drawable.image1).into(holder.card_image);
+        Glide.with(mcontext).load("http://"+iitem.getImageList().get(0)).into(holder.card_image);
         holder.card_name.setText(iitem.getTitle());
         holder.card_price.setText(iitem.getPrice());
     }

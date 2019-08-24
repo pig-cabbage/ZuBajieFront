@@ -54,7 +54,7 @@ public class release_Activity extends AppCompatActivity {
 
 
     Bitmap bitmap;  //图片
-
+    int id =0;
 
     String item_type; //分类
 
@@ -181,7 +181,7 @@ public class release_Activity extends AppCompatActivity {
             if (data != null) {
                 // 得到图片的全路径
                 Uri uri = data.getData();
-                String imagePath = getImagePath(uri,null);
+                final String imagePath = getImagePath(uri,null);
                 Toast toast =Toast.makeText(this,imagePath,Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER, 500, 500);//设置提示框显示的位置
                 toast.show();//显示消息
@@ -220,6 +220,8 @@ public class release_Activity extends AppCompatActivity {
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(400,
                         400);//两个400分别为添加图片的大小
                 imageView.setLayoutParams(params);
+                imageView.setId(id);//id从0开始计数
+                id++;
                 linearLayout.addView(imageView);
 
                 imageView.setOnClickListener(new View.OnClickListener() {
@@ -232,10 +234,19 @@ public class release_Activity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
 
-                                if(bitmaps!=null)
-                                    bitmaps.remove(bitmaps.size()-1);
+                                if(bitmaps!=null) {
+                                    int i_d=imageView.getId();//要删的id（也是位置）
+                                    bitmaps.remove(i_d);
+                                    pathOfImages.remove(i_d);
+                                    imageView.setId(-1);
+                                    ImageView ima;//后面的id全减1
+                                    for(int a=i_d+1;a<id;a++) {
+                                        ima=(ImageView)findViewById(a) ;
+                                        ima.setId((int)ima.getId()-1);
+                                    }
+                                }
                                 linearLayout.removeView(imageView);
-
+                                id--;
 
                             }
                         });

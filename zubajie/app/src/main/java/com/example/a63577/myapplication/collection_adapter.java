@@ -4,6 +4,9 @@ package com.example.a63577.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +17,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.a63577.myapplication.Entity.Item;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.List;
 
 public class collection_adapter extends RecyclerView.Adapter<collection_adapter.ViewHolder> {
@@ -52,16 +60,24 @@ public class collection_adapter extends RecyclerView.Adapter<collection_adapter.
         });
         return  hholder;
     }
-    public void onBindViewHolder(ViewHolder holder,int position)
+    public void onBindViewHolder(final ViewHolder holder, final int position)
     {
-        Item iitem=item_list.get(position);
+        final Item iitem=item_list.get(position);
         if(iitem.isBorrow()==true)
             holder.card_type.setText("借入");
         else
             holder.card_type.setText("借出");
-        Glide.with(mcontext).load(R.drawable.image1).into(holder.card_image);
+
+        Glide.with(mcontext).load("http://"+iitem.getImageList().get(0)).into(holder.card_image);
+
+
+
+        System.out.println("111111");
         holder.card_name.setText(iitem.getTitle());
-        holder.card_price.setText(iitem.getTitle());
+        holder.card_price.setText(iitem.getPrice());
     }
+
+
     public int getItemCount(){return item_list.size();}
+
 }

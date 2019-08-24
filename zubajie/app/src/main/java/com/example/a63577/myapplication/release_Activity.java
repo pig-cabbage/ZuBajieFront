@@ -88,12 +88,14 @@ public class release_Activity extends AppCompatActivity {
                     System.out.println(pathOfImages.size()+"     1111111111");
                     QiniuUploadManger uploadImage=new QiniuUploadManger();
                     for(int k=0;k<pathOfImages.size();++k){
-                        if(k==pathOfImages.size()-1)
-                            key.concat("picture.dormassistant.wang/"+uploadImage.uploadSingleFile(pathOfImages.get(k))+" ");
+                        if(k==pathOfImages.size()-1) {
+                            key=key.concat("picture.dormassistant.wang/"+uploadImage.uploadSingleFile(pathOfImages.get(k)) + " ");
+                            System.out.println("asdsadsad");
+                        }
                         else
-                            key.concat("picture.dormassistant.wang/"+uploadImage.uploadSingleFile(pathOfImages.get(k))+" ");
+                            key=key.concat("picture.dormassistant.wang/"+uploadImage.uploadSingleFile(pathOfImages.get(k))+" ");
                     }
-                    System.out.println(key.toString()+"999999999");
+                    System.out.println(key+"999999999");
                     String url;
                     if(borrow_or_loan.equals("借入"))
                         url=AppConfig.BASE_URL_PATH.concat("/addborrowitem");
@@ -132,8 +134,9 @@ public class release_Activity extends AppCompatActivity {
                             int i=((JSONObject) json).getByte("success");
                             if(i==1){
                                 Message msg = kHandler.obtainMessage();
-
                                 kHandler.sendMessage(msg);
+                                Intent intent = new Intent(release_Activity.this , MainActivity.class);
+                                startActivity(intent);
                             }
                             System.out.println("222222");
 
@@ -158,6 +161,7 @@ public class release_Activity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             Toast.makeText(release_Activity.this, "提交成功", Toast.LENGTH_SHORT).show();
+
         }
 
     };
@@ -266,7 +270,7 @@ public class release_Activity extends AppCompatActivity {
         edit_price = (EditText) findViewById(R.id.price);
 
 
-        final String[] ctype = new String[]{"全部", "资料", "电子产品","文具", "其他"};
+        final String[] ctype = new String[]{"书籍", "资料", "电子产品","文具","乐器","生活用品", "其他"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ctype);  //创建一个数组适配器
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);     //设置下拉列表框的下拉选项样式
 
@@ -336,7 +340,7 @@ public class release_Activity extends AppCompatActivity {
 
         //获得天数
         if(item_time!="无限")
-            item_time = edit.getText().toString()+"天";
+            item_time = edit.getText().toString();
 
         mHandler.sendMessage(msg);
 

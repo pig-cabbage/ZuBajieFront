@@ -64,7 +64,7 @@ public  class QiniuUploadManger {
 
             @Override
             public void onResponse(Response response) throws IOException {
-                Log.d(TAG, "onResponse: " + response.body().string());
+
                 String responseStr = response.body().string();
                 JSON json=JSON.parseObject(responseStr);
                 token[0] =((JSONObject) json).getString("token");

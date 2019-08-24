@@ -28,9 +28,11 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.a63577.myapplication.Entity.Item;
 import com.example.a63577.myapplication.constant.AppConfig;
+import com.qiniu.android.utils.Json;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.OkHttpClient;
@@ -83,13 +85,15 @@ public class release_Activity extends AppCompatActivity {
 
                     String price = edit_price.getText().toString();
                     String key="";
+                    System.out.println(pathOfImages.size()+"     1111111111");
                     QiniuUploadManger uploadImage=new QiniuUploadManger();
                     for(int k=0;k<pathOfImages.size();++k){
                         if(k==pathOfImages.size()-1)
-                            key.concat("picture.dormassistant.wang/"+uploadImage.uploadSingleFile(pathOfImages.get(k)));
+                            key.concat("picture.dormassistant.wang/"+uploadImage.uploadSingleFile(pathOfImages.get(k))+" ");
                         else
                             key.concat("picture.dormassistant.wang/"+uploadImage.uploadSingleFile(pathOfImages.get(k))+" ");
                     }
+                    System.out.println(key.toString()+"999999999");
                     String url;
                     if(borrow_or_loan.equals("借入"))
                         url=AppConfig.BASE_URL_PATH.concat("/addborrowitem");
@@ -124,12 +128,15 @@ public class release_Activity extends AppCompatActivity {
                         public void onResponse(Response response) throws IOException {
                             System.out.println("添加成功");
                             String responseStr = response.body().string();
-                            List<Item> orderEntitiest = new ArrayList<>();
-                            orderEntitiest = JSONObject.parseArray(responseStr, Item.class);
+                            JSON json=JSON.parseObject(responseStr);
+                            int i=((JSONObject) json).getByte("success");
+                            if(i==1){
+                                Message msg = kHandler.obtainMessage();
+
+                                kHandler.sendMessage(msg);
+                            }
                             System.out.println("222222");
-                            Message msg = mHandler.obtainMessage();
-                            msg.obj = orderEntitiest;
-                            mHandler.sendMessage(msg);
+
 
                         }
 
@@ -144,10 +151,15 @@ public class release_Activity extends AppCompatActivity {
                     })
 
                     .create();
-
-
             alertDialog1.show();
         }
+    };
+    private Handler kHandler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            Toast.makeText(release_Activity.this, "提交成功", Toast.LENGTH_SHORT).show();
+        }
+
     };
 
 
@@ -318,6 +330,9 @@ public class release_Activity extends AppCompatActivity {
     public void submit(View v){
 
         Message msg = mHandler.obtainMessage();
+        if(item_time!="无限"){
+            item_time=edit.getText().toString();
+        }
 
         mHandler.sendMessage(msg);
 

@@ -124,6 +124,7 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/r_border"
             android:text="注册"
+            android:onClick="register"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

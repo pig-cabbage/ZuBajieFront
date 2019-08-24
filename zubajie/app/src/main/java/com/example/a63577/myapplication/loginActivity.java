@@ -1,6 +1,7 @@
 package com.example.a63577.myapplication;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -90,5 +91,10 @@ public class loginActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void register(){
+        Intent intent=new Intent(loginActivity.this,register.class);
+        startActivity(intent);
     }
 }

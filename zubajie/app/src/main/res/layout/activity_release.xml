@@ -1,162 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".release_Activity">
 
 
-    <TableLayout
+
+
+    <LinearLayout
+        android:id="@+id/tableRow1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible">
+        android:layout_height="wrap_content"
+        android:background="#eee"
+        android:layout_marginTop="15dp"
+        >
 
-         <TableRow
-             android:id="@+id/tableRow1"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:background="#eee"
-             android:layout_marginTop="15dp"
-             >
-
-             <TextView
-                 android:id="@+id/textView1"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="                标题：" />
-
-            <EditText
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:theme="@style/MyEditText"
-                android:ems="10">
-
-            </EditText>
-         </TableRow>
-        <TableRow
-            android:id="@+id/tableRow2"
+        <TextView
+            android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#eee"
-            android:layout_marginTop="5dp"
-            >
+            android:text="                标题：" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="           补充说明" />
-
-            <EditText
-                android:id="@+id/supplement"
-                android:layout_width="wrap_content"
-                android:layout_height="123dp"
-                android:theme="@style/MyEditText"
-                android:ems="10" />
-
-        </TableRow>
-
-        <TableRow android:layout_marginTop="5dp" >
-
-            <HorizontalScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-                <LinearLayout
-                    android:id="@+id/line"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-            <Button
-                android:id="@+id/select_picture"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:background="@drawable/add_pic"
-                android:onClick="select_picture"></Button>
-                </LinearLayout>
-            </HorizontalScrollView>
-        </TableRow>
-
-
-
-        <TableRow
-            android:id="@+id/tableRow3"
+        <EditText
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#eee"
-            android:layout_marginTop="5dp">
+            android:theme="@style/MyEditText"
+            android:ems="10">
 
-            <TextView
-                android:id="@+id/user_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="              价格：" />
+        </EditText>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/tableRow2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#eee"
+        android:layout_marginTop="5dp"
+        >
 
-            <EditText
-                android:id="@+id/price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:theme="@style/MyEditText"
-                android:ems="10" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="元" />
-
-        </TableRow>
-
-
-        <TableRow
-            android:id="@+id/tableRow4"
+        <TextView
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#eee"
-            android:layout_marginTop="5dp">
+            android:text="           补充说明" />
 
-            <TextView
-                android:id="@+id/textView5"
+        <EditText
+            android:id="@+id/supplement"
+            android:layout_width="wrap_content"
+            android:layout_height="123dp"
+            android:theme="@style/MyEditText"
+            android:ems="10" />
+
+    </LinearLayout>
+
+    <LinearLayout android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/line"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="              类别：" />
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/select_picture"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:background="@drawable/add_pic"
+                    android:onClick="select_picture"></Button>
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
 
-            <Spinner
-                android:id="@+id/spinner1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                ></Spinner>
-        </TableRow>
 
 
-        <TableRow
-            android:id="@+id/tableRow5"
+    <LinearLayout
+        android:id="@+id/tableRow3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#eee"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:id="@+id/user_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#eee"
-            android:layout_marginTop="5dp">
+            android:text="              价格：" />
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="     订单时效：" />
+        <EditText
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/MyEditText"
+            android:ems="10" />
 
-            <EditText
-                android:id="@+id/editText4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:theme="@style/MyEditText"
-                android:ems="10" />
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="元" />
 
-            <Spinner
-                android:id="@+id/spinner2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                ></Spinner>
+    </LinearLayout>
 
-        </TableRow>
 
-    </TableLayout>
+    <LinearLayout
+        android:id="@+id/tableRow4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#eee"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="              类别：" />
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ></Spinner>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/tableRow5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#eee"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="     订单时效：" />
+
+        <EditText
+            android:id="@+id/editText4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/MyEditText"
+            android:ems="10" />
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ></Spinner>
+
+    </LinearLayout>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -169,10 +169,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="150dp"
-            android:layout_marginTop="480dp"
+            android:layout_marginTop="100dp"
             android:background="@drawable/check_border"
             android:onClick="submit"
             android:text="提交" />
     </RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

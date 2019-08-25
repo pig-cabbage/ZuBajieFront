@@ -46,13 +46,14 @@ import java.util.List;
 public class release_Activity extends AppCompatActivity {
 
 
+
     String borrow_or_loan; //借入或借出
     Button selectPicture;
     List<Bitmap> bitmaps=new ArrayList<>(); //图片的集合
 
     List<String> pathOfImages=new ArrayList<>(); //存储图片路径的集合
 
-
+    private Data application;
     Bitmap bitmap;  //图片
     int id =0;
 
@@ -101,6 +102,7 @@ public class release_Activity extends AppCompatActivity {
                         url=AppConfig.BASE_URL_PATH.concat("/addborrowitem");
                     else
                         url=AppConfig.BASE_URL_PATH.concat("/addlenditem");
+                    application=(Data)getApplication();
                     OkHttpClient mOkHttpClient = new OkHttpClient();
                     FormEncodingBuilder builder = new FormEncodingBuilder();
                         builder.add("title",title);
@@ -109,7 +111,7 @@ public class release_Activity extends AppCompatActivity {
                         builder.add("tag",item_type);
                         builder.add("validity",item_time);
                         builder.add("keyList",key);
-                        builder.add("userId","1");
+                        builder.add("userId",String.valueOf(application.getUserId()));
                         System.out.println(item_time+item_type+"68799t434");
 
 

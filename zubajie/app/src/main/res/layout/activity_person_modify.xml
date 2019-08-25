@@ -43,7 +43,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.522" />
 
-    <Button
+    <ImageView
         android:id="@+id/pictures"
         android:layout_width="130dp"
         android:layout_height="130dp"

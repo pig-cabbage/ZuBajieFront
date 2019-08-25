@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.example.a63577.myapplication.Entity.Item;
 import com.example.a63577.myapplication.constant.AppConfig;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
@@ -22,6 +25,8 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 
 public class personal extends AppCompatActivity {
 
@@ -47,12 +52,26 @@ public class personal extends AppCompatActivity {
 
     private Button button_auth;
     private Button button_modify;
+    private Data application;
 
     private SharedPreferences preferences;
 
     Bitmap bitmap;  //图片
     Uri head_porstraint; //头像
     ImageView head_picture;
+
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            HashMap<String,Object>object=(HashMap<String, Object>)msg.obj;
+                            T_user_name.setText((String)object.get("userName"));
+                T_nick_name.setText((String)object.get("nicakName"));
+                T_sex.setText((String)object.get("sexInt"));
+                T_student_number.setText((String)object.get("studentNumber"));
+                T_phone_number.setText((String)object.get("phoneNumber"));
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,9 +98,8 @@ public class personal extends AppCompatActivity {
         T_school =findViewById(R.id.school);
 
         //获取userId
-        preferences=getPreferences(Activity.MODE_PRIVATE);
-        int userId=preferences.getInt("userId",0);
-
+        application=(Data)getApplication();
+        int userId=application.getUserId();
         String userIdStr=String.valueOf(userId);
         OkHttpClient okHttpClient=new OkHttpClient();
         String url= AppConfig.GET_USER_INFO.concat("?userId=").concat(userIdStr);
@@ -111,16 +129,20 @@ public class personal extends AppCompatActivity {
                 else sex="女";
                 String studentNumber=((JSONObject) userInfo).getString("studentNumber");
                 String phoneNumber=((JSONObject) userInfo).getString("phoneNumber");
-                Integer score=((JSONObject) userInfo).getInteger("score");
-                String school="华南理工大学";
-                T_user_name.setText(userName);
-                T_user_id.setText(userId);
-                T_nick_name.setText(nicakName);
-                T_sex.setText(sex);
-                T_student_number.setText(studentNumber);
-                T_phone_number.setText(phoneNumber);
-                T_score.setText(score);
-                T_school.setText(school);
+
+                Message msg = mHandler.obtainMessage();
+                HashMap<String,Object>chuanDI=new HashMap<>();
+                chuanDI.put("userName",userName);
+                chuanDI.put("nicakName",nicakName);
+                chuanDI.put("sexInt",sex);
+                chuanDI.put("studentNumber",studentNumber);
+                chuanDI.put("phoneNumber",phoneNumber);
+
+                msg.obj = chuanDI;
+
+                mHandler.sendMessage(msg);
+
+
             }
         });
 

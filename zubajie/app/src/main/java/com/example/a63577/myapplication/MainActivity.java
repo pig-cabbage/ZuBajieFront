@@ -1,5 +1,6 @@
 package com.example.a63577.myapplication;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("11111");
+        System.out.println(getPreferences(Activity.MODE_PRIVATE).getInt("userId",0));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -97,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         fab_borrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                 Intent intent=new Intent(MainActivity.this,release_Activity.class);
 
@@ -377,6 +380,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
     //调用后端执行搜索功能的API
     private void searchByName(String goodName)     {
         OkHttpClient mOkHttpClient = new OkHttpClient();

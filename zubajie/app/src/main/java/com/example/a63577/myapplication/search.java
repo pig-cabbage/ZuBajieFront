@@ -31,7 +31,7 @@ public class search extends AppCompatActivity {
         public void handleMessage(Message msg) {
             mlist = (List<Item>) msg.obj;
             if (null != mlist) {
-                adapter = new Item_adapter(mlist);
+                adapter = new search_adapter(mlist);
                 item_display_search.setAdapter(adapter);
             }
         }
@@ -49,7 +49,7 @@ public class search extends AppCompatActivity {
         GridLayoutManager layoutManager =new GridLayoutManager(this,1);
         item_display_search.setLayoutManager(layoutManager);
         final Intent intent=getIntent();
-        String information =(Item)intent.getSerializableExtra("information") ;
+        String information =(String)intent.getSerializableExtra("information") ;
         searchByName(information);
 
     }

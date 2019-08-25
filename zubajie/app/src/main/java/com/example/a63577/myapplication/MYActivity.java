@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 public class MYActivity extends AppCompatActivity {
     private Button first_page;
+    private Data application;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
@@ -29,9 +30,11 @@ finish();
     }
 
     public void btn_collection(View v) {
-
-        if(getPreferences(Activity.MODE_PRIVATE).getBoolean("isLogged",false)==false)
+        application=(Data)getApplication();
+        if(application.isLogged()==false)
         {
+
+
             Message msg = kHandler.obtainMessage();
             kHandler.sendMessage(msg);
         }
@@ -42,7 +45,8 @@ finish();
     }
 
     public void btn_order(View v) {
-        if(getPreferences(Activity.MODE_PRIVATE).getBoolean("isLogged",false)==false)
+        application=(Data)getApplication();
+        if(application.isLogged()==false)
         {
             Message msg = kHandler.obtainMessage();
             kHandler.sendMessage(msg);

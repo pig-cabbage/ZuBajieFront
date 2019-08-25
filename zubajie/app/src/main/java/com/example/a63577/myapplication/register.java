@@ -74,7 +74,7 @@ public class register extends AppCompatActivity {
         public void handleMessage(Message msg) {
             Toast.makeText(register.this, "注册成功", Toast.LENGTH_SHORT).show();
 
-            Intent intent=new Intent(register.this,MainActivity.class);
+            Intent intent=new Intent(register.this,loginActivity.class);
             startActivity(intent);
         }
     };
@@ -200,7 +200,6 @@ public class register extends AppCompatActivity {
                         .build();
 
                 Call call = mOkHttpClient.newCall(request);
-                @Override
                 call.enqueue(new Callback() {
 
                     @Override
@@ -214,9 +213,9 @@ public class register extends AppCompatActivity {
                         String responseStr = response.body().string();
                         JSON json = JSON.parseObject(responseStr);
                         int i = ((JSONObject) json).getByte("success");
+                        System.out.println(i+"!!!!!!!!!!!!!!!!!!");
                         if(i==1) {
                             Message msg = mHandler.obtainMessage();
-
                             mHandler.sendMessage(msg);
                         }
                     }

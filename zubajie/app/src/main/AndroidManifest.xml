@@ -11,7 +11,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name="com.example.a63577.myapplication.Data">
         <activity android:name=".register"></activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".search" />
@@ -37,7 +38,7 @@
         <activity android:name=".chat_Activity" />
         <activity android:name=".authentication" />
         <activity android:name=".MYActivity"/>
-        <activity android:name=".constant.Data" />
+        <activity android:name=".personal"/>
     </application>
 
 </manifest>

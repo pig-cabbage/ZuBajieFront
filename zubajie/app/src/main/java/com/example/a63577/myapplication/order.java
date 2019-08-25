@@ -1,5 +1,6 @@
 package com.example.a63577.myapplication;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,7 +13,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSONObject;
 import com.example.a63577.myapplication.Entity.AndroidOrder;
 import com.example.a63577.myapplication.constant.AppConfig;
-import com.example.a63577.myapplication.constant.Data;
+
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.FormEncodingBuilder;
@@ -29,7 +30,7 @@ public class order extends AppCompatActivity {
     private RecyclerView item_display_order;
     private List<AndroidOrder> mlist = new ArrayList<>() ;
     private order_adapter adapter;
-    final Data app = (Data)getApplication();
+   private Data application;
     private Handler mHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -69,7 +70,9 @@ public class order extends AppCompatActivity {
         System.out.println("1111");
         OkHttpClient mOkHttpClient = new OkHttpClient();
         FormEncodingBuilder builder = new FormEncodingBuilder();
-        builder.add("userId","1");
+        application=(Data)getApplication();
+
+        builder.add("userId",String.valueOf(application.getUserId()));
 
         final Request request = new Request.Builder()
                 .url(AppConfig.DISPLAY_ORDER)

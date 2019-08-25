@@ -9,17 +9,21 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.bumptech.glide.Glide;
 import com.example.a63577.myapplication.constant.AppConfig;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
@@ -29,6 +33,7 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 
 public class person_modify extends AppCompatActivity {
@@ -50,18 +55,31 @@ public class person_modify extends AppCompatActivity {
     private EditText T_phone_number;
     private EditText T_address;
     private EditText T_school;
+    private Data application;
 
 
     private RadioGroup radioGroup_gender;
 
     private Button button_ok;
     private Button button_no;
-    private Button select; //头像
+    private ImageView select; //头像
 
 
     private SharedPreferences preferences;
 
     Bitmap bitmap;
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            HashMap<String,Object> object=(HashMap<String, Object>)msg.obj;
+            T_user_name.setText((String)object.get("userName"));
+            T_nick_name.setText((String)object.get("nicakName"));
+
+            T_student_number.setText((String)object.get("studentNumber"));
+            T_phone_number.setText((String)object.get("phoneNumber"));
+            Glide.with(person_modify.this).load("http://"+(String)object.get("headXiang")).into(select);
+        }
+    };
 
     public void select(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK, null);
@@ -103,11 +121,8 @@ public class person_modify extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person_modify);
 
-        //设置头像
-        //uri由数据库获得
-//        bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-//        Drawable d = new BitmapDrawable(bitmap);
-//        select.setBackground(d);
+
+
 
         button_ok = findViewById(R.id.button_ok);
         button_no = findViewById(R.id.button_no);
@@ -126,8 +141,8 @@ public class person_modify extends AppCompatActivity {
 
 
         //获取userId
-        preferences=getPreferences(Activity.MODE_PRIVATE);
-        int userId=preferences.getInt("userId",0);
+        application=(Data)getApplication();
+        int userId=application.getUserId();
         String userIdStr=String.valueOf(userId);
         OkHttpClient okHttpClient=new OkHttpClient();
         String url= AppConfig.GET_USER_INFO.concat("?userId=").concat(userIdStr);
@@ -147,9 +162,9 @@ public class person_modify extends AppCompatActivity {
                 String responseStr = response.body().string();
                 JSON json=JSON.parseObject(responseStr);
                 JSON userInfo=((JSONObject) json).getJSONObject("userInfo");
-                Integer userId=((JSONObject) userInfo).getInteger("userId");
                 String userName=((JSONObject) userInfo).getString("userName");
                 String nicakName=((JSONObject) userInfo).getString("nicakName");
+                String headXiang=((JSONObject) userInfo).getString("headPortrait");
                 int sexInt=((JSONObject) userInfo).getByte("sex");
                 String sex="男";
                 if(sexInt==0) sex="男";
@@ -157,10 +172,20 @@ public class person_modify extends AppCompatActivity {
                 String studentNumber=((JSONObject) userInfo).getString("studentNumber");
                 String phoneNumber=((JSONObject) userInfo).getString("phoneNumber");
                 Integer score=((JSONObject) userInfo).getInteger("score");
-                T_user_name.setText(userName);
-                T_nick_name.setText(nicakName);
-                T_student_number.setText(studentNumber);
-                T_phone_number.setText(phoneNumber);
+                Message msg = mHandler.obtainMessage();
+                HashMap<String,Object>chuanDI=new HashMap<>();
+                chuanDI.put("userName",userName);
+                chuanDI.put("nicakName",nicakName);
+
+                chuanDI.put("studentNumber",studentNumber);
+                chuanDI.put("phoneNumber",phoneNumber);
+                chuanDI.put("headXiang",headXiang);
+
+                msg.obj = chuanDI;
+
+                mHandler.sendMessage(msg);
+
+
             }
         });
 

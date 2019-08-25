@@ -11,7 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import com.alibaba.fastjson.JSONObject;
 import com.example.a63577.myapplication.Entity.Item;
 import com.example.a63577.myapplication.constant.AppConfig;
-import com.example.a63577.myapplication.constant.Data;
+
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.FormEncodingBuilder;
@@ -28,8 +28,7 @@ public class collection extends AppCompatActivity {
     private RecyclerView item_display_collection;
     List<Item> mlist = new ArrayList<>() ;
     collection_adapter adapter;
-
-    Data app=new Data();
+    private  Data application;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -56,10 +55,11 @@ public class collection extends AppCompatActivity {
         GridLayoutManager layoutManager =new GridLayoutManager(this,1);
         item_display_collection.setLayoutManager(layoutManager);
 
-        app.onCreate();
+
         OkHttpClient mOkHttpClient = new OkHttpClient();
         FormEncodingBuilder builder = new FormEncodingBuilder();
-        builder.add("userId",String.valueOf(app.getUserId()));
+        application=(Data)getApplication();
+        builder.add("userId",String.valueOf(application.getUserId()));
 
         final Request request = new Request.Builder()
                 .url(AppConfig.DIS_COLLECT)
